@@ -6,6 +6,6 @@ public interface InventoryRep {
     int getStorageSize();
     int getTotalSize();
     ItemStackRep getStored(int slot);
-    void setStored(int slot);
+    void setStored(int slot, ItemStackRep stack);
     //todo add more stuff, accessible, special etc
 }
