@@ -455,17 +455,17 @@ public class Blocks112 {
             case SPRUCE_SLAB:
                 return r.logKey(b).logVar(b);
             case STRIPPED_ACACIA_WOOD:
-                return r.wellSub(BIRCH_WOOD);
+                return r.wellSub(ACACIA_WOOD);
             case STRIPPED_BIRCH_WOOD:
                 return r.wellSub(BIRCH_WOOD);
             case STRIPPED_DARK_OAK_WOOD:
-                return r.wellSub(BIRCH_WOOD);
+                return r.wellSub(DARK_OAK_WOOD);
             case STRIPPED_JUNGLE_WOOD:
-                return r.wellSub(BIRCH_WOOD);
+                return r.wellSub(JUNGLE_WOOD);
             case STRIPPED_OAK_WOOD:
-                return r.wellSub(BIRCH_WOOD);
+                return r.wellSub(OAK_WOOD);
             case STRIPPED_SPRUCE_WOOD:
-                return r.wellSub(BIRCH_WOOD);
+                return r.wellSub(SPRUCE_WOOD);
                 
                 
             case BIRCH_LOG:
