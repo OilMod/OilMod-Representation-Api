@@ -5,6 +5,8 @@ import org.oilmod.api.rep.block.BlockStateRep;
 import org.oilmod.api.rep.item.BlockItemRep;
 import org.oilmod.api.rep.item.ItemRep;
 import org.oilmod.api.rep.item.ItemStateRep;
+import org.oilmod.api.rep.itemstack.state.ItemStackStateRep;
+import org.oilmod.api.rep.stdimpl.itemstack.state.ItemStackStateImpl;
 
 public abstract class ItemStackFactory {
     public static ItemStackFactory INSTANCE;
@@ -48,4 +50,7 @@ public abstract class ItemStackFactory {
     public abstract ItemStackRep create(ItemRep item, ItemStackStateRep state, int amount);
     public abstract ItemStackStateRep createStackState(ItemRep item, ItemStateRep itemState);
     public abstract ItemStackStateRep createStackState(BlockItemRep item, BlockStateRep itemState);
+    public ItemStackStateRep cloneStackState(ItemStackStateRep state) {
+        return new ItemStackStateImpl(state);
+    }
 }

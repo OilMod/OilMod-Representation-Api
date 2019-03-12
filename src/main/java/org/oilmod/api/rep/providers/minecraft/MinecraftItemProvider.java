@@ -1,5 +1,6 @@
 package org.oilmod.api.rep.providers.minecraft;
 
+import org.apache.commons.lang3.Validate;
 import org.oilmod.api.rep.block.BlockRep;
 import org.oilmod.api.rep.item.ItemRep;
 
@@ -14,7 +15,6 @@ public abstract class MinecraftItemProvider {
             synchronized (MUTEX) {
                 if (MinecraftItemProvider.instance == null) {
                     MinecraftItemProvider.instance = instance;
-                    MinecraftItemProvider.init();
                 } else {
                     throw new IllegalStateException(CANNOT_INITIALISE_SINGLETON_TWICE);
                 }
@@ -32,13 +32,15 @@ public abstract class MinecraftItemProvider {
     protected abstract ItemRep getItem(MinecraftItem item);
 
 
-
-
-    private static void init() {
+    private boolean initialised;
+    public static void init() {
         MinecraftItemProvider helper = MinecraftItemProvider.getInstance();
+        Validate.notNull(helper, "MinecraftItemProvider not implemented or set");
+        if (helper.initialised)return;
         helper.apiInit();
         MinecraftItem.values(); //will force initialisation
         helper.apiPostInit();
+        helper.initialised = true;
     }
 
 }

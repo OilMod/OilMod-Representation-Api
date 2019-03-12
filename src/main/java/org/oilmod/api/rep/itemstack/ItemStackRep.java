@@ -3,6 +3,7 @@ package org.oilmod.api.rep.itemstack;
 import org.oilmod.api.rep.enchant.EnchantmentRep;
 import org.oilmod.api.rep.item.ItemRep;
 import org.oilmod.api.rep.item.ItemStateRep;
+import org.oilmod.api.rep.itemstack.state.ItemStackStateRep;
 
 public interface ItemStackRep {
 

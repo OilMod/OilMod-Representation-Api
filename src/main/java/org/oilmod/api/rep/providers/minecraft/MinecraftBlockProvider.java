@@ -1,8 +1,7 @@
 package org.oilmod.api.rep.providers.minecraft;
 
-import org.oilmod.api.rep.block.BlockRep;
+import org.apache.commons.lang3.Validate;
 import org.oilmod.api.rep.block.BlockStateRep;
-import org.oilmod.api.rep.item.ItemRep;
 import org.oilmod.api.rep.variant.Substitute;
 
 
@@ -16,7 +15,6 @@ public abstract class MinecraftBlockProvider {
             synchronized (MUTEX) {
                 if (MinecraftBlockProvider.instance == null) {
                     MinecraftBlockProvider.instance = instance;
-                    MinecraftBlockProvider.init();
                 } else {
                     throw new IllegalStateException(CANNOT_INITIALISE_SINGLETON_TWICE);
                 }
@@ -35,11 +33,15 @@ public abstract class MinecraftBlockProvider {
 
 
 
-    private static void init() {
+    private boolean initialised;
+    public static void init() {
         MinecraftBlockProvider helper = MinecraftBlockProvider.getInstance();
+        Validate.notNull(helper, "MinecraftBlockProvider not implemented or set");
+        if (helper.initialised)return;
         helper.apiInit();
         MinecraftBlock.values(); //will force initialisation
         helper.apiPostInit();
+        helper.initialised = true;
     }
 
 }

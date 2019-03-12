@@ -1,26 +1,33 @@
-package org.oilmod.api.rep.itemstack;
+package org.oilmod.api.rep.itemstack.state;
 
 import org.oilmod.api.rep.enchant.EnchantmentRep;
 import org.oilmod.api.rep.item.ItemStateRep;
+import org.oilmod.api.rep.itemstack.ItemStackFactory;
+import org.oilmod.api.rep.itemstack.ItemStackRep;
 
 public interface ItemStackStateRep {
     ItemStateRep getItemState();
+    void applyItemState(ItemStateRep state);
+    void applyTo(ItemStackRep stack);
+    boolean isAttached();
 
-
-
-    /**
-     * Sets the durability of this item
-     *
-     * @param durability Durability of this item
-     */
-    void setDurability(final short durability);
+    default ItemStackStateRep copy() {
+        return ItemStackFactory.INSTANCE.cloneStackState(this);
+    }
 
     /**
-     * Gets the durability of this item
+     * Sets the damage of this item
      *
-     * @return Durability of this item
+     * @param itemDamage damage of this item
      */
-    short getDurability();
+    void setItemDamage(final int itemDamage);
+
+    /**
+     * Gets the damage of this item
+     *
+     * @return damage of this item
+     */
+    int getItemDamage();
 
     /**
      * Gets the level of the specified enchantment on this item stack
