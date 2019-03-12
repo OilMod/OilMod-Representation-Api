@@ -2,11 +2,19 @@ package org.oilmod.api.rep.itemstack;
 
 import org.oilmod.api.rep.enchant.EnchantmentRep;
 import org.oilmod.api.rep.item.ItemRep;
+import org.oilmod.api.rep.item.ItemStateRep;
 
 public interface ItemStackRep {
 
     ItemRep getItem();
-    
+
+
+    ItemStackStateRep getItemStackState();
+
+     default ItemStateRep getItemState() {
+         return getItemStackState().getItemState();
+     }
+
     /**
      * Gets the amount of items in this stack
      *
@@ -21,20 +29,6 @@ public interface ItemStackRep {
      */
     void setAmount(int amount);
 
-
-    /**
-     * Sets the durability of this item
-     *
-     * @param durability Durability of this item
-     */
-    void setDurability(final short durability);
-
-    /**
-     * Gets the durability of this item
-     *
-     * @return Durability of this item
-     */
-    short getDurability();
 
     /**
      * Get the maximum stacksize for the material hold in this ItemStack.
@@ -53,38 +47,9 @@ public interface ItemStackRep {
      */
     boolean isSimilar(ItemStackRep stack);
 
-    ItemStackRep clone();
-
-    /**
-     * Gets the level of the specified enchantment on this item stack
-     *
-     * @param ench EnchantmentRep to check
-     * @return Level of the enchantment, or 0
-     */
-    int getEnchantmentLevel(EnchantmentRep ench);
-
-    /**
-     * Adds the specified {@link EnchantmentRep} to this item stack.
-     * <p>
-     * If this item stack already contained the given enchantment (at any
-     * level), it will be replaced.
-     *
-     * @param ench EnchantmentRep to add
-     * @param level Level of the enchantment
-     * @throws IllegalArgumentException if enchantment null, or enchantment is
-     *     not applicable
-     */
-    void addEnchantment(EnchantmentRep ench, int level, boolean force);
+    ItemStackRep copy();
 
 
-    /**
-     * Removes the specified {@link EnchantmentRep} if it exists on this
-     * ItemStack
-     *
-     * @param ench EnchantmentRep to remove
-     * @return Previous level, or 0
-     */
-    int removeEnchantment(EnchantmentRep ench);
 
     /**
      * Clones the itemstack and returns it a single quantity.
@@ -100,7 +65,7 @@ public interface ItemStackRep {
      * @return The new itemstack with specified quantity
      */
     default ItemStackRep asQuantity(int qty) {
-        ItemStackRep clone = clone();
+        ItemStackRep clone = copy();
         clone.setAmount(qty);
         return clone;
     }
