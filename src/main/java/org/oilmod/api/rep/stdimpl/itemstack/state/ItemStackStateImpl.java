@@ -3,10 +3,12 @@ package org.oilmod.api.rep.stdimpl.itemstack.state;
 import gnu.trove.map.hash.THashMap;
 import org.oilmod.api.rep.enchant.EnchantmentRep;
 import org.oilmod.api.rep.item.ItemStateRep;
-import org.oilmod.api.rep.itemstack.ItemStackRep;
 import org.oilmod.api.rep.itemstack.state.ItemStackStateRep;
+import org.oilmod.api.util.ReadSet;
+import org.oilmod.api.util.WrappedReadSet;
 
 import java.util.Map;
+import java.util.Set;
 
 public class ItemStackStateImpl implements ItemStackStateRep {
     private ItemStateRep state;
@@ -18,7 +20,9 @@ public class ItemStackStateImpl implements ItemStackStateRep {
     }
 
     public ItemStackStateImpl(ItemStackStateRep state) {
+        state.applyTo(this);
     }
+
 
     @Override
     public ItemStateRep getItemState() {
@@ -28,16 +32,6 @@ public class ItemStackStateImpl implements ItemStackStateRep {
     @Override
     public void applyItemState(ItemStateRep state) {
         this.state = state;
-    }
-
-    @Override
-    public void applyTo(ItemStackRep stack) {
-        ItemStackStateRep to = stack.getItemStackState();
-        to.applyItemState(getItemState());
-        to.setItemDamage(getItemDamage());
-        for (Map.Entry<EnchantmentRep, Integer> entry:enchantments.entrySet()) {
-            to.addEnchantment(entry.getKey(), entry.getValue(), true); //already checked against state
-        }
     }
 
     @Override
@@ -73,5 +67,10 @@ public class ItemStackStateImpl implements ItemStackStateRep {
     @Override
     public int removeEnchantment(EnchantmentRep ench) {
         return enchantments.remove(ench);
+    }
+
+    @Override
+    public ReadSet<EnchantmentRep> getEnchantments() {
+        return new WrappedReadSet<>(enchantments.keySet());
     }
 }

@@ -1,6 +1,9 @@
 package org.oilmod.api.rep.enchant;
 
+import org.oilmod.api.rep.IKey;
 import org.oilmod.api.rep.item.ItemRep;
+import org.oilmod.api.rep.item.ItemStateRep;
+import org.oilmod.api.rep.itemstack.state.ItemStackStateRep;
 
 public interface EnchantmentRep {
     /**
@@ -8,7 +11,7 @@ public interface EnchantmentRep {
      *
      * @return Unique name
      */
-    String getName();
+    IKey getKey();
 
     /**
      * Gets the maximum level that this Enchantment may become.
@@ -58,5 +61,9 @@ public interface EnchantmentRep {
      * @param item Item to test
      * @return True if the enchantment may be applied, otherwise False
      */
-    boolean canEnchantItem(ItemRep item);
+    default boolean canEnchantItem(ItemRep item) {
+        return canEnchantItem(item, item.getStandardState());
+    }
+    boolean canEnchantItem(ItemRep item, ItemStateRep state);
+    boolean canEnchantItem(ItemRep item, ItemStackStateRep stackState);
 }

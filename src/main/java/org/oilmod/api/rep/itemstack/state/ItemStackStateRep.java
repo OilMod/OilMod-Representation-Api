@@ -4,12 +4,30 @@ import org.oilmod.api.rep.enchant.EnchantmentRep;
 import org.oilmod.api.rep.item.ItemStateRep;
 import org.oilmod.api.rep.itemstack.ItemStackFactory;
 import org.oilmod.api.rep.itemstack.ItemStackRep;
+import org.oilmod.api.util.ReadSet;
+
+import java.util.Map;
+import java.util.Set;
 
 public interface ItemStackStateRep {
     ItemStateRep getItemState();
     void applyItemState(ItemStateRep state);
-    void applyTo(ItemStackRep stack);
     boolean isAttached();
+
+    default void applyTo(ItemStackRep stack) {
+        applyTo(stack.getItemStackState());
+    }
+
+    default void applyTo(ItemStackStateRep to) {
+        to.applyItemState(getItemState());
+        to.setItemDamage(getItemDamage());
+        for (EnchantmentRep ench:to.getEnchantments()) {
+            to.removeEnchantment(ench);
+        }
+        for (EnchantmentRep ench:getEnchantments()) {
+            to.addEnchantment(ench, getEnchantmentLevel(ench), true); //assumed to be valid or already forced
+        }
+    }
 
     default ItemStackStateRep copy() {
         return ItemStackFactory.INSTANCE.cloneStackState(this);
@@ -59,4 +77,6 @@ public interface ItemStackStateRep {
      * @return Previous level, or 0
      */
     int removeEnchantment(EnchantmentRep ench);
+
+    ReadSet<? extends EnchantmentRep> getEnchantments();
 }
