@@ -41,9 +41,18 @@ public interface RequestEnum<TEnum extends Enum<TEnum> & RequestEnum<TEnum, TReq
                 request.init(hasCircleDep);
                 parent.saveRequest(request);
             }
-            init();
+            parent.init();
             initialising = false;
             initialised = true;
+        }
+
+
+        public boolean isInitialised() {
+            return initialised;
+        }
+
+        public boolean isInitialising() {
+            return initialising;
         }
     }
 }

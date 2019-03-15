@@ -46,7 +46,7 @@ public interface EntityHumanRep extends EntityLivingRep {
      *
      * @param item The ItemStack which will end up in the hand
      */
-    public void setItemOnCursor(ItemStackRep item);
+    public void setItemOnCursor(ItemStackRep stack);
 
     /**
      * Returns whether this player is slumbering.

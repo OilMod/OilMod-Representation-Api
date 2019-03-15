@@ -6,7 +6,8 @@ public enum BlockFaceRep {
     SOUTH(0, 0, 1),
     WEST(-1, 0, 0),
     UP(0, 1, 0),
-    DOWN(0, -1, 0);
+    DOWN(0, -1, 0),
+    SELF(0, 0, 0);
 
     private final int modX;
     private final int modY;

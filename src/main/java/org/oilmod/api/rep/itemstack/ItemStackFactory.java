@@ -48,6 +48,7 @@ public abstract class ItemStackFactory {
 
 
     public abstract ItemStackRep create(ItemRep item, ItemStackStateRep state, int amount);
+    public abstract ItemStackRep empty();
     public abstract ItemStackStateRep createStackState(ItemRep item, ItemStateRep itemState);
     public abstract ItemStackStateRep createStackState(BlockItemRep item, BlockStateRep itemState);
     public ItemStackStateRep cloneStackState(ItemStackStateRep state) {

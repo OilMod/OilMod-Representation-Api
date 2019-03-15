@@ -67,18 +67,22 @@ public class RequestBase<TDep, TRequest extends Request<TDep, TRequest>> impleme
 
     public TRequest partially(TDep substitute) {
         this.substitute =substitute;
+        deps.add(substitute);
         return partially();
     }
     public TRequest wellSub(TDep substitute) {
         this.substitute =substitute;
+        deps.add(substitute);
         return wellSub();
     }
     public TRequest badSub(TDep substitute) {
         this.substitute =substitute;
+        deps.add(substitute);
         return badSub();
     }
     public TRequest unavailable(TDep substitute) {
         this.substitute =substitute;
+        deps.add(substitute);
         return unavailable();
     }
 
