@@ -856,6 +856,47 @@ public class Blocks112 {
                 return r.key("skull"); //todo nbt
 
 
+            case DANDELION:
+                return r.key("yellow_flower");
+            case PEONY:
+            case POPPY:
+                return r.key("red_flower");
+            case OXEYE_DAISY:
+                return r.key(POPPY).prop("type", "oxeye_daisy");
+            case BLUE_ORCHID:
+                return r.key(POPPY).prop("type", "blue_orchid");
+            case ORANGE_TULIP:
+                return r.key(POPPY).prop("type", "orange_tulip");
+            case PINK_TULIP:
+                return r.key(POPPY).prop("type", "pink_tulip");
+            case RED_TULIP:
+                return r.key(POPPY).prop("type", "red_tulip");
+            case WHITE_TULIP:
+                return r.key(POPPY).prop("type", "white_tulip");
+            case ALLIUM:
+                return r.key(POPPY).prop("type", "allium");
+            case AZURE_BLUET:
+                return r.key(POPPY).prop("type", "houstonia");
+
+
+            case CARVED_PUMPKIN:
+                return r.key(PUMPKIN);
+            case JACK_O_LANTERN:
+                return r.key("LIT_PUMPKIN");
+            case ATTACHED_MELON_STEM:
+                return r.wellSub(MELON_STEM); //if not facing up add way to represent that
+            case ATTACHED_PUMPKIN_STEM:
+                return r.wellSub(PUMPKIN_STEM); //if not facing up add way to represent that
+            case MELON:
+                return r.key("melon_block");
+
+
+            case DARK_PRISMARINE:
+                return r.key(PRISMARINE).variant("dark_prismarine");
+            case PRISMARINE_BRICKS:
+                return r.key(PRISMARINE).variant("prismarine_bricks");
+
+
             //various renames
             case BRICKS:
                 return r.key("brick_block");
@@ -881,8 +922,6 @@ public class Blocks112 {
                 return r.key(SAND).variant("red_sand");
             case DRIED_KELP_BLOCK:
                 return r.badSub(HAY_BLOCK);
-            case CARVED_PUMPKIN:
-                return r.key(PUMPKIN);
             case SUGAR_CANE:
                 return r.key("reeds");
             case BUBBLE_COLUMN:
@@ -899,8 +938,6 @@ public class Blocks112 {
                 return r.key("web");
             case SNOW:
                 return r.key("snow_layer");
-            case JACK_O_LANTERN:
-                return r.key("LIT_PUMPKIN");
             case NETHER_QUARTZ_ORE:
                 return r.key("quartz_ore");
             case COMPARATOR:
@@ -915,6 +952,14 @@ public class Blocks112 {
                 return r.key("redstone_torch"); //todo unlit_redstone_torch
             case NETHER_PORTAL:
                 return r.key("portal");
+            case LILY_PAD:
+                return r.key("waterlily");
+            case COBBLESTONE_STAIRS:
+                return r.key("stone_stairs ");
+            case DARK_PRISMARINE_STAIRS:
+            case PRISMARINE_BRICK_STAIRS:
+            case PRISMARINE_STAIRS:
+                return r.wellSub(PURPUR_STAIRS);
             
             
             case PURPUR_SLAB: //same
@@ -1121,54 +1166,28 @@ public class Blocks112 {
             case RED_SANDSTONE_SLAB:
             case SANDSTONE_SLAB:
             case STONE_BRICK_SLAB:
-            case COBBLESTONE_STAIRS:
-            case DARK_PRISMARINE_STAIRS:
-            case PRISMARINE_BRICK_STAIRS:
-            case PRISMARINE_STAIRS:
-            case ATTACHED_MELON_STEM:
-            case ATTACHED_PUMPKIN_STEM:
-            case ALLIUM:
                 //return r.unavailable(Magma_cre) //allow item substitute
             case TURTLE_EGG: //allow item substitute
-            case COMMAND_BLOCK_MINECART: //todo move to items
-            case FURNACE_MINECART: //todo move to items
             case CONDUIT:
-            case DARK_PRISMARINE:
             case KELP:
             case KELP_PLANT:
-            case LILY_PAD:
-            case MELON:
             case MOVING_PISTON:
             case MUSHROOM_STEM:
-            case MUSHROOM_STEW:
             case SEAGRASS:
             case SEA_PICKLE:
             case SIGN:
             case SMOOTH_STONE:
             case POWERED_RAIL:
-            case PRISMARINE_BRICKS:
                 
             case ROSE_BUSH:
-            case ROSE_RED:
             case SUNFLOWER:
             case TALL_GRASS:
             case TALL_SEAGRASS:
-            case DANDELION:
-            case DANDELION_YELLOW:
             case DEAD_BUSH:
             case LILAC:
-            case OXEYE_DAISY:
-            case BLUE_ORCHID:
-            case ORANGE_TULIP:
-            case PINK_TULIP:
-            case RED_TULIP:
-            case WHITE_TULIP:
             case FERN:
             case LARGE_FERN:
-            case AZURE_BLUET:
-            case PEONY:
-            case POPPY:
-                
+
 
 
 

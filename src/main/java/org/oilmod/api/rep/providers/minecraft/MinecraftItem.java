@@ -3,6 +3,11 @@ package org.oilmod.api.rep.providers.minecraft;
 public enum MinecraftItem {
 
     ACACIA_BOAT,
+    COMMAND_BLOCK_MINECART,
+    DANDELION_YELLOW,
+    FURNACE_MINECART,
+    MUSHROOM_STEW,
+    ROSE_RED,
     APPLE,
     ARMOR_STAND,
     ARROW,

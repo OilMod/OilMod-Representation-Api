@@ -131,7 +131,6 @@ public enum MinecraftBlock implements RequestEnum<MinecraftBlock, BlockRequest> 
     COBWEB,
     COCOA, //Cocoa
     COMMAND_BLOCK, //CommandBlock
-    COMMAND_BLOCK_MINECART,
     COMPARATOR, //Comparator
     CONDUIT, //Waterlogged
     CRACKED_STONE_BRICKS,
@@ -154,7 +153,6 @@ public enum MinecraftBlock implements RequestEnum<MinecraftBlock, BlockRequest> 
     CYAN_WOOL,
     DAMAGED_ANVIL, //Directional
     DANDELION,
-    DANDELION_YELLOW,
     DARK_OAK_BUTTON, //Switch
     DARK_OAK_DOOR, //Door
     DARK_OAK_FENCE, //Fence
@@ -222,7 +220,6 @@ public enum MinecraftBlock implements RequestEnum<MinecraftBlock, BlockRequest> 
     FLOWER_POT,
     FROSTED_ICE, //Ageable
     FURNACE, //Furnace
-    FURNACE_MINECART,
     GLASS,
     GLASS_PANE, //GlassPane
     GLOWSTONE,
@@ -358,7 +355,6 @@ public enum MinecraftBlock implements RequestEnum<MinecraftBlock, BlockRequest> 
     MOSSY_STONE_BRICKS,
     MOVING_PISTON, //TechnicalPiston
     MUSHROOM_STEM, //MultipleFacing
-    MUSHROOM_STEW,
     MYCELIUM, //Snowable
     NETHERRACK,
     NETHER_BRICKS,
@@ -505,7 +501,6 @@ public enum MinecraftBlock implements RequestEnum<MinecraftBlock, BlockRequest> 
     REPEATER, //Repeater
     REPEATING_COMMAND_BLOCK, //CommandBlock
     ROSE_BUSH, //Bisected
-    ROSE_RED,
     SAND,
     SANDSTONE,
     SANDSTONE_SLAB, //Slab
