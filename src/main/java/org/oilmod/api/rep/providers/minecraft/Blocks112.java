@@ -714,49 +714,6 @@ public class Blocks112 {
                 return r.key("flower_pot"); //todo nbt
 
 
-            case BRAIN_CORAL:
-            case BRAIN_CORAL_BLOCK:
-            case BRAIN_CORAL_FAN:
-            case BRAIN_CORAL_WALL_FAN:
-            case BUBBLE_CORAL:
-            case BUBBLE_CORAL_BLOCK:
-            case BUBBLE_CORAL_FAN:
-            case BUBBLE_CORAL_WALL_FAN:
-            case DEAD_BRAIN_CORAL:
-            case DEAD_BRAIN_CORAL_BLOCK:
-            case DEAD_BRAIN_CORAL_FAN:
-            case DEAD_BRAIN_CORAL_WALL_FAN:
-            case DEAD_BUBBLE_CORAL:
-            case DEAD_BUBBLE_CORAL_BLOCK:
-            case DEAD_BUBBLE_CORAL_FAN:
-            case DEAD_BUBBLE_CORAL_WALL_FAN:
-            case DEAD_FIRE_CORAL:
-            case DEAD_FIRE_CORAL_BLOCK:
-            case DEAD_FIRE_CORAL_FAN:
-            case DEAD_FIRE_CORAL_WALL_FAN:
-            case DEAD_HORN_CORAL:
-            case DEAD_HORN_CORAL_BLOCK:
-            case DEAD_HORN_CORAL_FAN:
-            case DEAD_HORN_CORAL_WALL_FAN:
-            case DEAD_TUBE_CORAL:
-            case DEAD_TUBE_CORAL_BLOCK:
-            case DEAD_TUBE_CORAL_FAN:
-            case DEAD_TUBE_CORAL_WALL_FAN:
-            case FIRE_CORAL:
-            case FIRE_CORAL_BLOCK:
-            case FIRE_CORAL_FAN:
-            case FIRE_CORAL_WALL_FAN:
-            case HORN_CORAL:
-            case HORN_CORAL_BLOCK:
-            case HORN_CORAL_FAN:
-            case HORN_CORAL_WALL_FAN:
-            case TUBE_CORAL:
-            case TUBE_CORAL_BLOCK:
-            case TUBE_CORAL_FAN:
-            case TUBE_CORAL_WALL_FAN:
-                return r.unavailable(STONE);
-
-
             case CAVE_AIR:
             case VOID_AIR:
                 return r.partially(AIR);
@@ -795,6 +752,8 @@ public class Blocks112 {
                 return r.key(STONE).variant("smooth_diorite");
             case POLISHED_GRANITE:
                 return r.key(STONE).variant("smooth_granite");
+            case SMOOTH_STONE:
+                return r.partially(STONE);
                 
                 
             case STONE_BRICKS:
@@ -836,7 +795,7 @@ public class Blocks112 {
             case CHISELED_QUARTZ_BLOCK:
                 return r.key(QUARTZ_BLOCK).variant("chiseled");
             case QUARTZ_PILLAR:
-                return r.key(QUARTZ_BLOCK).variant("linesY");
+                return r.key(QUARTZ_BLOCK).variant("lines_y");
             case SMOOTH_QUARTZ:
                 return r.partially(QUARTZ_BLOCK);
                 
@@ -858,7 +817,6 @@ public class Blocks112 {
 
             case DANDELION:
                 return r.key("yellow_flower");
-            case PEONY:
             case POPPY:
                 return r.key("red_flower");
             case OXEYE_DAISY:
@@ -897,7 +855,116 @@ public class Blocks112 {
                 return r.key(PRISMARINE).variant("prismarine_bricks");
 
 
+            case STONE_SLAB: //same
+                return r;
+            case COBBLESTONE_SLAB:
+                return r.key(STONE_SLAB).variant("cobblestone");
+            case BRICK_SLAB:
+                return r.key(STONE_SLAB).variant("brick");
+            case NETHER_BRICK_SLAB:
+                return r.key(STONE_SLAB).variant("nether_brick");
+            case PETRIFIED_OAK_SLAB:
+                return r.key(STONE_SLAB).variant("wood_old");
+            case QUARTZ_SLAB:
+                return r.key(STONE_SLAB).variant("quartz");
+            case RED_SANDSTONE_SLAB:
+                return r.partially(SANDSTONE_SLAB);
+            case SANDSTONE_SLAB:
+                return r.key(STONE_SLAB).variant("sandstone");
+            case STONE_BRICK_SLAB:
+                return r.key(STONE_SLAB).variant("stone_brick");
+            case DARK_PRISMARINE_SLAB:
+            case PRISMARINE_BRICK_SLAB:
+            case PRISMARINE_SLAB:
+                return r.wellSub(PURPUR_SLAB);
+
+
+            case MUSHROOM_STEM:
+                return r.key(RED_MUSHROOM_BLOCK).variant("all_stem").partially(); //add compatibility to old doublet of 
+                
+                
+            case GRASS:
+                return r.key("tallgrass").prop("type", "tall_grass");
+            case FERN:
+                return r.key("tallgrass").prop("type", "fern");
+                
+                
+            case SUNFLOWER:
+                return r.key("double_plant").variant("sunflower");
+            case TALL_GRASS:
+                return r.key(SUNFLOWER).variant("double_grass");
+            case LILAC:
+                return r.key(SUNFLOWER).variant("syringa");
+            case LARGE_FERN:
+                return r.key(SUNFLOWER).variant("double_fern");
+            case ROSE_BUSH:
+                return r.key(SUNFLOWER).variant("double_rose");
+            case PEONY:
+                return r.key(SUNFLOWER).variant("paeonia");
+
+            case SEAGRASS:
+                return r.badSub(GRASS);
+            case TALL_SEAGRASS:
+                return r.badSub(TALL_GRASS);
+
+                //not available
+            case BRAIN_CORAL:
+            case BRAIN_CORAL_BLOCK:
+            case BRAIN_CORAL_FAN:
+            case BRAIN_CORAL_WALL_FAN:
+            case BUBBLE_CORAL:
+            case BUBBLE_CORAL_BLOCK:
+            case BUBBLE_CORAL_FAN:
+            case BUBBLE_CORAL_WALL_FAN:
+            case DEAD_BRAIN_CORAL:
+            case DEAD_BRAIN_CORAL_BLOCK:
+            case DEAD_BRAIN_CORAL_FAN:
+            case DEAD_BRAIN_CORAL_WALL_FAN:
+            case DEAD_BUBBLE_CORAL:
+            case DEAD_BUBBLE_CORAL_BLOCK:
+            case DEAD_BUBBLE_CORAL_FAN:
+            case DEAD_BUBBLE_CORAL_WALL_FAN:
+            case DEAD_FIRE_CORAL:
+            case DEAD_FIRE_CORAL_BLOCK:
+            case DEAD_FIRE_CORAL_FAN:
+            case DEAD_FIRE_CORAL_WALL_FAN:
+            case DEAD_HORN_CORAL:
+            case DEAD_HORN_CORAL_BLOCK:
+            case DEAD_HORN_CORAL_FAN:
+            case DEAD_HORN_CORAL_WALL_FAN:
+            case DEAD_TUBE_CORAL:
+            case DEAD_TUBE_CORAL_BLOCK:
+            case DEAD_TUBE_CORAL_FAN:
+            case DEAD_TUBE_CORAL_WALL_FAN:
+            case FIRE_CORAL:
+            case FIRE_CORAL_BLOCK:
+            case FIRE_CORAL_FAN:
+            case FIRE_CORAL_WALL_FAN:
+            case HORN_CORAL:
+            case HORN_CORAL_BLOCK:
+            case HORN_CORAL_FAN:
+            case HORN_CORAL_WALL_FAN:
+            case TUBE_CORAL:
+            case TUBE_CORAL_BLOCK:
+            case TUBE_CORAL_FAN:
+            case TUBE_CORAL_WALL_FAN:
+            case TURTLE_EGG: //allow item substitute
+            case CONDUIT:
+            case KELP:
+            case KELP_PLANT:
+            case SEA_PICKLE:
+                return r.unavailable(STONE);
+                
+                
             //various renames
+            case MOVING_PISTON:
+                return r.key("piston_extension");
+            case SIGN:
+                return r.key("standing_sign");
+            case POWERED_RAIL:
+                return r.key("golden_rail");
+            case DEAD_BUSH:
+                return r.key("deadbush");
             case BRICKS:
                 return r.key("brick_block");
             case GRASS_BLOCK:
@@ -905,7 +972,7 @@ public class Blocks112 {
             case NOTE_BLOCK:
                 return r.key("noteblock");
             case WET_SPONGE:
-                return r.key(SPONGE).propTrue("WET");
+                return r.key(SPONGE).propTrue("wet");
             case TERRACOTTA:
                 return r.key("hardened_clay");
             case SHULKER_BOX:
@@ -955,7 +1022,7 @@ public class Blocks112 {
             case LILY_PAD:
                 return r.key("waterlily");
             case COBBLESTONE_STAIRS:
-                return r.key("stone_stairs ");
+                return r.key("stone_stairs");
             case DARK_PRISMARINE_STAIRS:
             case PRISMARINE_BRICK_STAIRS:
             case PRISMARINE_STAIRS:
@@ -963,7 +1030,6 @@ public class Blocks112 {
             
             
             case PURPUR_SLAB: //same
-            case STONE_SLAB:
 
                 
                 
@@ -1090,7 +1156,6 @@ public class Blocks112 {
             case GLOWSTONE:
             case GOLD_BLOCK:
             case GOLD_ORE:
-            case GRASS:
             case GRASS_PATH:
             case GRAVEL:
             case HAY_BLOCK:
@@ -1155,44 +1220,13 @@ public class Blocks112 {
 
             
                 //differnt or new
-            case COBBLESTONE_SLAB:
-            case DARK_PRISMARINE_SLAB:
-            case BRICK_SLAB:
-            case NETHER_BRICK_SLAB:
-            case PETRIFIED_OAK_SLAB:
-            case PRISMARINE_BRICK_SLAB:
-            case PRISMARINE_SLAB:
-            case QUARTZ_SLAB:
-            case RED_SANDSTONE_SLAB:
-            case SANDSTONE_SLAB:
-            case STONE_BRICK_SLAB:
                 //return r.unavailable(Magma_cre) //allow item substitute
-            case TURTLE_EGG: //allow item substitute
-            case CONDUIT:
-            case KELP:
-            case KELP_PLANT:
-            case MOVING_PISTON:
-            case MUSHROOM_STEM:
-            case SEAGRASS:
-            case SEA_PICKLE:
-            case SIGN:
-            case SMOOTH_STONE:
-            case POWERED_RAIL:
-                
-            case ROSE_BUSH:
-            case SUNFLOWER:
-            case TALL_GRASS:
-            case TALL_SEAGRASS:
-            case DEAD_BUSH:
-            case LILAC:
-            case FERN:
-            case LARGE_FERN:
 
 
 
 
             default:
-                return m112(b);
+                return r;
         }
     }
 
@@ -1200,64 +1234,4 @@ public class Blocks112 {
     private static Req m112(MinecraftBlock b) {
         return new Req(b);
     }
-
-    /*TODO:
-    * No block with name {minecraft:allium} found, got {minecraft:air} instead
-No block with name {minecraft:attached_melon_stem} found, got {minecraft:air} instead
-No block with name {minecraft:attached_pumpkin_stem} found, got {minecraft:air} instead
-No block with name {minecraft:azure_bluet} found, got {minecraft:air} instead
-No block with name {minecraft:blue_orchid} found, got {minecraft:air} instead
-No block with name {minecraft:brick_slab} found, got {minecraft:air} instead
-No block with name {minecraft:cobblestone_slab} found, got {minecraft:air} instead
-No block with name {minecraft:cobblestone_stairs} found, got {minecraft:air} instead
-No block with name {minecraft:command_block_minecart} found, got {minecraft:air} instead
-No block with name {minecraft:conduit} found, got {minecraft:air} instead
-No block with name {minecraft:dandelion} found, got {minecraft:air} instead
-No block with name {minecraft:dandelion_yellow} found, got {minecraft:air} instead
-No block with name {minecraft:dark_prismarine} found, got {minecraft:air} instead
-No block with name {minecraft:dark_prismarine_slab} found, got {minecraft:air} instead
-No block with name {minecraft:dark_prismarine_stairs} found, got {minecraft:air} instead
-No block with name {minecraft:dead_bush} found, got {minecraft:air} instead
-No block with name {minecraft:fern} found, got {minecraft:air} instead
-No block with name {minecraft:furnace_minecart} found, got {minecraft:air} instead
-No block with name {minecraft:kelp} found, got {minecraft:air} instead
-No block with name {minecraft:kelp_plant} found, got {minecraft:air} instead
-No block with name {minecraft:large_fern} found, got {minecraft:air} instead
-No block with name {minecraft:lilac} found, got {minecraft:air} instead
-No block with name {minecraft:lily_pad} found, got {minecraft:air} instead
-No block with name {minecraft:melon} found, got {minecraft:air} instead
-No block with name {minecraft:moving_piston} found, got {minecraft:air} instead
-No block with name {minecraft:mushroom_stem} found, got {minecraft:air} instead
-No block with name {minecraft:mushroom_stew} found, got {minecraft:air} instead
-No block with name {minecraft:nether_brick_slab} found, got {minecraft:air} instead
-No block with name {minecraft:orange_tulip} found, got {minecraft:air} instead
-No block with name {minecraft:oxeye_daisy} found, got {minecraft:air} instead
-No block with name {minecraft:peony} found, got {minecraft:air} instead
-No block with name {minecraft:petrified_oak_slab} found, got {minecraft:air} instead
-No block with name {minecraft:pink_tulip} found, got {minecraft:air} instead
-No block with name {minecraft:poppy} found, got {minecraft:air} instead
-No block with name {minecraft:powered_rail} found, got {minecraft:air} instead
-No block with name {minecraft:prismarine_bricks} found, got {minecraft:air} instead
-No block with name {minecraft:prismarine_brick_slab} found, got {minecraft:air} instead
-No block with name {minecraft:prismarine_brick_stairs} found, got {minecraft:air} instead
-No block with name {minecraft:prismarine_slab} found, got {minecraft:air} instead
-No block with name {minecraft:prismarine_stairs} found, got {minecraft:air} instead
-Missing value {linesY} for property {variant} for block {minecraft:quartz_block}
-No block with name {minecraft:quartz_slab} found, got {minecraft:air} instead
-No block with name {minecraft:red_sandstone_slab} found, got {minecraft:air} instead
-No block with name {minecraft:red_tulip} found, got {minecraft:air} instead
-No block with name {minecraft:rose_bush} found, got {minecraft:air} instead
-No block with name {minecraft:rose_red} found, got {minecraft:air} instead
-No block with name {minecraft:sandstone_slab} found, got {minecraft:air} instead
-No block with name {minecraft:seagrass} found, got {minecraft:air} instead
-No block with name {minecraft:sea_pickle} found, got {minecraft:air} instead
-No block with name {minecraft:sign} found, got {minecraft:air} instead
-No block with name {minecraft:smooth_stone} found, got {minecraft:air} instead
-No block with name {minecraft:stone_brick_slab} found, got {minecraft:air} instead
-No block with name {minecraft:sunflower} found, got {minecraft:air} instead
-No block with name {minecraft:tall_grass} found, got {minecraft:air} instead
-No block with name {minecraft:tall_seagrass} found, got {minecraft:air} instead
-No block with name {minecraft:turtle_egg} found, got {minecraft:air} instead
-null
-No block with name {minecraft:white_tulip} found, got {minecraft:air} instead*/
 }
