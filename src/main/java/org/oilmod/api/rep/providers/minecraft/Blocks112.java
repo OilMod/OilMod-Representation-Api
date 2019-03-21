@@ -1143,6 +1143,7 @@ public class Blocks112 {
             case EMERALD_ORE:
             case ENCHANTING_TABLE:
             case ENDER_CHEST:
+            case END_GATEWAY:
             case END_PORTAL:
             case END_PORTAL_FRAME:
             case END_ROD:
@@ -1175,6 +1176,8 @@ public class Blocks112 {
             case LEVER:
             case MELON_STEM:
             case MOSSY_COBBLESTONE:
+            case BROWN_MUSHROOM:
+            case DRAGON_EGG:
             case MYCELIUM:
             case NETHERRACK:
             case NETHER_WART:

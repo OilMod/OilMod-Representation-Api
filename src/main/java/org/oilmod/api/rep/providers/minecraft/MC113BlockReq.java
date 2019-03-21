@@ -1,8 +1,10 @@
 package org.oilmod.api.rep.providers.minecraft;
 
+import org.oilmod.api.rep.providers.KeyedRequestBase;
+import org.oilmod.api.rep.providers.Request;
 import org.oilmod.api.rep.providers.RequestBase;
 
-public class MC113BlockReq extends RequestBase<MinecraftBlock, BlockRequest> implements BlockRequest {
+public class MC113BlockReq extends KeyedRequestBase<MinecraftBlock, MC113BlockReq> implements BlockRequest {
     private String key;
 
     public MC113BlockReq(MinecraftBlock b) {

@@ -2,12 +2,12 @@ package org.oilmod.api.rep.providers;
 
 import java.util.function.Function;
 
-public interface RequestEnum<TEnum extends Enum<TEnum> & RequestEnum<TEnum, TRequest>, TRequest extends Request<TEnum, TRequest>> {
+public interface RequestEnum<TEnum extends Enum<TEnum> & RequestEnum<TEnum, TRequest>, TRequest extends Request<TEnum>> {
     InitState<TEnum, TRequest> getInitState();
     void saveRequest(TRequest request);
     void init();
 
-    class InitState<TEnum extends Enum<TEnum> & RequestEnum<TEnum, TRequest>, TRequest extends Request<TEnum, TRequest>> {
+    class InitState<TEnum extends Enum<TEnum> & RequestEnum<TEnum, TRequest>, TRequest extends Request<TEnum>> {
         private boolean initialising = false;
         private boolean initialised = false;
 

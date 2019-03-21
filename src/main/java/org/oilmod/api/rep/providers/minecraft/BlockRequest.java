@@ -5,6 +5,6 @@ import org.oilmod.api.rep.providers.minecraft.MinecraftBlock;
 
 import java.util.Set;
 
-public interface BlockRequest extends Request<MinecraftBlock, BlockRequest> {
+public interface BlockRequest extends Request<MinecraftBlock> {
 
 }

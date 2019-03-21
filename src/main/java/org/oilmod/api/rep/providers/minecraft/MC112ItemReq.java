@@ -1,23 +1,12 @@
 package org.oilmod.api.rep.providers.minecraft;
 
-import org.oilmod.api.rep.providers.RequestBase;
+import org.oilmod.api.rep.providers.KeyedRequestBase;
 
-public class MC112ItemReq extends RequestBase<MinecraftItem, ItemRequest> implements ItemRequest {
-    private String key;
+public class MC112ItemReq extends KeyedRequestBase<MinecraftItem, MC112ItemReq> implements ItemRequest {
     private int data;
 
     public MC112ItemReq(MinecraftItem b) {
-        this.key = b.toString().toLowerCase(); //should work at least currently
-    }
-
-
-    public String getKey() {
-        return key;
-    }
-
-    public MC112ItemReq key(String key) {
-        this.key = key;
-        return this;
+        key(b.toString().toLowerCase()); //should work at least currently
     }
 
     public MC112ItemReq data(int d) {

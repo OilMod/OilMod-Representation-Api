@@ -1,46 +1,22 @@
 package org.oilmod.api.rep.providers.minecraft;
 
 import gnu.trove.set.hash.THashSet;
+import org.oilmod.api.rep.providers.KeyedRequestBase;
+import org.oilmod.api.rep.providers.Request;
 import org.oilmod.api.rep.providers.RequestBase;
 
 import java.util.Set;
 
-public class MC112BlockReq extends RequestBase<MinecraftBlock, BlockRequest> implements BlockRequest {
-    private String key;
-    private MinecraftBlock sameKey;
+public class MC112BlockReq extends KeyedRequestBase<MinecraftBlock, MC112BlockReq> implements BlockRequest{
     private Set<Property> properties = new THashSet<>();
 
 
     public MC112BlockReq(MinecraftBlock b) {
-        this.key = b.toString().toLowerCase(); //should work at least currently
-    }
-
-    public String getKey() {
-        return key;
+        key(b.toString().toLowerCase()); //should work at least currently
     }
 
     public Set<Property> getProperties() {
         return properties;
-    }
-
-    public MC112BlockReq key(String key) {
-        this.key = key;
-        return this;
-    }
-
-
-    public MC112BlockReq key(MinecraftBlock key) {
-        this.sameKey = key;
-        deps.add(key);
-        return this;
-    }
-
-    public MinecraftBlock getSameKey() {
-        return sameKey;
-    }
-
-    public boolean hasSameKey() {
-        return getSameKey() != null;
     }
 
     public MC112BlockReq propTrue(String name) {

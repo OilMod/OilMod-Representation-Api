@@ -91,6 +91,7 @@ public enum MinecraftBlock implements RequestEnum<MinecraftBlock, BlockRequest> 
     BROWN_CONCRETE_POWDER,
     BROWN_GLAZED_TERRACOTTA, //Directional
     BROWN_MUSHROOM_BLOCK, //MultipleFacing
+    BROWN_MUSHROOM,
     BROWN_SHULKER_BOX, //Directional
     BROWN_STAINED_GLASS,
     BROWN_STAINED_GLASS_PANE, //GlassPane
@@ -194,6 +195,7 @@ public enum MinecraftBlock implements RequestEnum<MinecraftBlock, BlockRequest> 
     DIORITE,
     DIRT,
     DISPENSER, //Dispenser
+    DRAGON_EGG,
     DRAGON_HEAD, //Rotatable
     DRAGON_WALL_HEAD, //Directional
     DRIED_KELP_BLOCK,
@@ -202,6 +204,7 @@ public enum MinecraftBlock implements RequestEnum<MinecraftBlock, BlockRequest> 
     EMERALD_ORE,
     ENCHANTING_TABLE,
     ENDER_CHEST, //EnderChest
+    END_GATEWAY,
     END_PORTAL,
     END_PORTAL_FRAME, //EndPortalFrame
     END_ROD, //Directional

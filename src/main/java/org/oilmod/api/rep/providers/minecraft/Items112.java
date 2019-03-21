@@ -1,5 +1,7 @@
 package org.oilmod.api.rep.providers.minecraft;
 
+import static org.oilmod.api.rep.providers.minecraft.MinecraftItem.*;
+
 public class Items112 {
     private static class Req extends MC112ItemReq {
         public Req(MinecraftItem b) {
@@ -120,46 +122,91 @@ public class Items112 {
                 return r.colour(i);
 
 
+            case MUSIC_DISC_11:
+                return r.key("record_11");
+            case MUSIC_DISC_13:
+                return r.key("record_13");
+            case MUSIC_DISC_BLOCKS:
+                return r.key("record_blocks");
+            case MUSIC_DISC_CAT:
+                return r.key("record_cat");
+            case MUSIC_DISC_CHIRP:
+                return r.key("record_chirp");
+            case MUSIC_DISC_FAR:
+                return r.key("record_far");
+            case MUSIC_DISC_MALL:
+                return r.key("record_mall");
+            case MUSIC_DISC_MELLOHI:
+                return r.key("record_mellohi");
+            case MUSIC_DISC_STAL:
+                return r.key("record_stal");
+            case MUSIC_DISC_STRAD:
+                return r.key("record_strad");
+            case MUSIC_DISC_WAIT:
+                return r.key("record_wait");
+            case MUSIC_DISC_WARD:
+                return r.key("record_ward");
+
+
+            case COD:
+                return r.key("fish");
+            case SALMON:
+                return r.key(COD).data(1);
+            case TROPICAL_FISH:
+                return r.key(COD).data(2).wellSub();
+            case PUFFERFISH:
+                return r.key(COD).data(3);
+            case COOKED_COD:
+                return r.key("cooked_fish");
+            case COOKED_SALMON:
+                return r.key(COOKED_COD).data(1);
+
 
             case CHARCOAL:
-            case COD:
-            case COD_BUCKET:
-            case COOKED_COD:
-            case COOKED_SALMON:
-            case DEBUG_STICK:
-            case DRIED_KELP:
+                return r.key(COAL).data(1);
             case ENCHANTED_GOLDEN_APPLE:
-            case END_GATEWAY:
-            case FIREWORK_ROCKET:
-            case FIREWORK_STAR:
-            case GLISTERING_MELON_SLICE:
-            case HEART_OF_THE_SEA:
-            case MELON_SLICE:
-            case MUSIC_DISC_:
-            case MUSIC_DISC_3:
-            case MUSIC_DISC_BLOCKS:
-            case MUSIC_DISC_CAT:
-            case MUSIC_DISC_CHIRP:
-            case MUSIC_DISC_FAR:
-            case MUSIC_DISC_MALL:
-            case MUSIC_DISC_MELLOHI:
-            case MUSIC_DISC_STAL:
-            case MUSIC_DISC_STRAD:
-            case MUSIC_DISC_WAIT:
-            case MUSIC_DISC_WARD:
-            case NAUTILUS_SHELL:
-            case OAK_BOAT:
-            case PHANTOM_MEMBRANE:
-            case POPPED_CHORUS_FRUIT:
-            case PUFFERFISH:
+                return r.key(GOLDEN_APPLE).data(1);
+
+
+            case COD_BUCKET:
             case PUFFERFISH_BUCKET:
-            case SALMON:
             case SALMON_BUCKET:
-            case SCUTE:
-            case TRIDENT:
-            case TROPICAL_FISH:
             case TROPICAL_FISH_BUCKET:
+                return r.partially(WATER_BUCKET);
+
+
+            case TRIDENT:
+                return r.unavailable(IRON_SWORD);
             case TURTLE_HELMET:
+                return r.unavailable(LEATHER_HELMET);
+            case DEBUG_STICK:
+                return r.unavailable(STICK);
+
+
+            case MELON_SLICE:
+                return r.key("melon");
+            case GLISTERING_MELON_SLICE:
+                r.key("speckled_melon");
+            case OAK_BOAT:
+                return r.key("boat");
+            case FIREWORK_ROCKET:
+                return r.key("fireworks");
+            case FIREWORK_STAR:
+                return r.key("firework_charge");
+            case POPPED_CHORUS_FRUIT:
+                return r.key("chorus_fruit_popped");
+            case NETHER_BRICK:
+                return r.key("netherbrick");
+
+
+            case HEART_OF_THE_SEA:
+                return r.unavailable(MAGMA_CREAM);
+            case NAUTILUS_SHELL:
+            case PHANTOM_MEMBRANE:
+            case SCUTE:
+                return r.unavailable(STICK);
+            case DRIED_KELP:
+                return r.badSub(MELON_SLICE);
 
             case ACACIA_BOAT: //same
             case COMMAND_BLOCK_MINECART:
@@ -182,7 +229,6 @@ public class Items112 {
             case BOWL:
             case BREAD:
             case BRICK:
-            case BROWN_MUSHROOM:
             case BUCKET:
             case CARROT:
             case CARROT_ON_A_STICK:
@@ -216,7 +262,6 @@ public class Items112 {
             case DIAMOND_SHOVEL:
             case DIAMOND_SWORD:
             case DRAGON_BREATH:
-            case DRAGON_EGG:
             case EGG:
             case ELYTRA:
             case EMERALD:
@@ -281,7 +326,6 @@ public class Items112 {
             case MINECART:
             case MUTTON:
             case NAME_TAG:
-            case NETHER_BRICK:
             case NETHER_STAR:
             case PAINTING:
             case PAPER:

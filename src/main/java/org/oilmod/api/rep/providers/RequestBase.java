@@ -7,10 +7,15 @@ import java.util.Collections;
 import java.util.Set;
 
 @SuppressWarnings("unchecked")
-public class RequestBase<TDep, TRequest extends Request<TDep, TRequest>> implements Request<TDep, TRequest> {
+public class RequestBase<TDep, TRequest extends Request<TDep>> implements Request<TDep> {
     protected final Set<TDep> deps = new THashSet<>();
     private final Set<TDep> depsRead = Collections.unmodifiableSet(deps);
     private boolean initialised;
+
+    public RequestBase() {
+        TRequest req = (TRequest) this;
+        req.isInitialised(); //check generic arg
+    }
 
     @Override
     public Set<TDep> getDependencies() {
