@@ -387,6 +387,7 @@ public class Blocks112 {
             throw new IllegalStateException();
         }
     }
+
     public static BlockRequest getLinker(MinecraftBlock b) {
         Req r = m112(b);
         switch (b) {
@@ -399,8 +400,8 @@ public class Blocks112 {
             case JUNGLE_BUTTON:
             case SPRUCE_BUTTON:
                 return r.partially(OAK_BUTTON);
-                
-                
+
+
             case OAK_DOOR:
                 return r.key("wooden_door");
             case ACACIA_DOOR:
@@ -409,8 +410,8 @@ public class Blocks112 {
             case JUNGLE_DOOR:
             case SPRUCE_DOOR:
                 return r.partially(OAK_DOOR);
-                
-                
+
+
             case OAK_TRAPDOOR:
                 return r.key("trapdoor");
             case ACACIA_TRAPDOOR:
@@ -419,8 +420,8 @@ public class Blocks112 {
             case JUNGLE_TRAPDOOR:
             case SPRUCE_TRAPDOOR:
                 return r.partially(OAK_TRAPDOOR);
-                
-                
+
+
             case BIRCH_LEAVES:
             case JUNGLE_LEAVES:
             case OAK_LEAVES:
@@ -464,8 +465,8 @@ public class Blocks112 {
                 return r.wellSub(OAK_WOOD);
             case STRIPPED_SPRUCE_WOOD:
                 return r.wellSub(SPRUCE_WOOD);
-                
-                
+
+
             case BIRCH_LOG:
             case JUNGLE_LOG:
             case OAK_LOG:
@@ -505,8 +506,8 @@ public class Blocks112 {
             case WHITE_BED:
             case YELLOW_BED:
                 return r.partially(RED_BED);
-                
-                
+
+
             case BLACK_CARPET:
             case BLACK_CONCRETE:
             case BLACK_CONCRETE_POWDER:
@@ -638,7 +639,7 @@ public class Blocks112 {
             case RED_BANNER:
             case WHITE_BANNER:
             case YELLOW_BANNER:
-                return r.key("standing_banner"); //todo nbt 
+                return r.key("standing_banner"); //todo nbt
 
             case BLACK_WALL_BANNER:
             case BLUE_WALL_BANNER:
@@ -656,7 +657,7 @@ public class Blocks112 {
             case RED_WALL_BANNER:
             case WHITE_WALL_BANNER:
             case YELLOW_WALL_BANNER:
-                return r.key("wall_banner"); //todo nbt 
+                return r.key("wall_banner"); //todo nbt
 
 
             case OAK_PRESSURE_PLATE:
@@ -679,7 +680,7 @@ public class Blocks112 {
             case SPRUCE_FENCE:
                 return r.partially(OAK_PRESSURE_PLATE);
 
-                
+
             case OAK_FENCE_GATE:
                 return r.key("fence_gate");
             case ACACIA_FENCE_GATE:
@@ -739,7 +740,7 @@ public class Blocks112 {
             case LIGHT_GRAY_SHULKER_BOX: //special
                 return r.key("silver_shulker_box");
 
-                
+
             case ANDESITE:
                 return r.key(STONE).variant("andesite");
             case GRANITE:
@@ -754,8 +755,8 @@ public class Blocks112 {
                 return r.key(STONE).variant("smooth_granite");
             case SMOOTH_STONE:
                 return r.partially(STONE);
-                
-                
+
+
             case STONE_BRICKS:
                 return r.key("stonebrick");
             case CHISELED_STONE_BRICKS:
@@ -770,7 +771,7 @@ public class Blocks112 {
                 return r.key(DIRT).variant("coarse_dirt");
             case PODZOL:
                 return r.key(DIRT).variant("podzol");
-                
+
 
             case CHISELED_SANDSTONE:
                 return r.key(SANDSTONE).prop("type", "chiseled_sandstone");
@@ -787,7 +788,7 @@ public class Blocks112 {
             case CUT_RED_SANDSTONE:
                 return r.wellSub(SMOOTH_RED_SANDSTONE);
 
-                
+
             case CHIPPED_ANVIL:
                 return r.key(ANVIL).prop("damage", 1);
             case DAMAGED_ANVIL:
@@ -798,8 +799,8 @@ public class Blocks112 {
                 return r.key(QUARTZ_BLOCK).variant("lines_y");
             case SMOOTH_QUARTZ:
                 return r.partially(QUARTZ_BLOCK);
-                
-                
+
+
             case WITHER_SKELETON_SKULL:
             case WITHER_SKELETON_WALL_SKULL:
             case ZOMBIE_HEAD:
@@ -880,15 +881,15 @@ public class Blocks112 {
 
 
             case MUSHROOM_STEM:
-                return r.key(RED_MUSHROOM_BLOCK).variant("all_stem").partially(); //add compatibility to old doublet of 
-                
-                
+                return r.key(RED_MUSHROOM_BLOCK).variant("all_stem").partially(); //add compatibility to old doublet of
+
+
             case GRASS:
                 return r.key("tallgrass").prop("type", "tall_grass");
             case FERN:
                 return r.key("tallgrass").prop("type", "fern");
-                
-                
+
+
             case SUNFLOWER:
                 return r.key("double_plant").variant("sunflower");
             case TALL_GRASS:
@@ -954,8 +955,8 @@ public class Blocks112 {
             case KELP_PLANT:
             case SEA_PICKLE:
                 return r.unavailable(STONE);
-                
-                
+
+
             //various renames
             case MOVING_PISTON:
                 return r.key("piston_extension");
@@ -1027,13 +1028,13 @@ public class Blocks112 {
             case PRISMARINE_BRICK_STAIRS:
             case PRISMARINE_STAIRS:
                 return r.wellSub(PURPUR_STAIRS);
-            
-            
+
+
             case PURPUR_SLAB: //same
 
-                
-                
-                
+
+
+
 
             case BRICK_STAIRS: //same
             case NETHER_BRICK_STAIRS:
@@ -1218,16 +1219,17 @@ public class Blocks112 {
             case WHEAT:
 
 
-            
+
                 //differnt or new
                 //return r.unavailable(Magma_cre) //allow item substitute
 
 
 
 
-            default:
                 return r;
         }
+
+        throw new IllegalStateException("Did not return mapping for " + b.toString());
     }
 
 

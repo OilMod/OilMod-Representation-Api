@@ -1,11 +1,12 @@
 package org.oilmod.api.rep.providers.minecraft;
 
 import org.apache.commons.lang3.Validate;
+import org.oilmod.api.APIBase;
 import org.oilmod.api.rep.block.BlockStateRep;
 import org.oilmod.api.rep.variant.Substitute;
 
 
-public abstract class MinecraftBlockProvider {
+public abstract class MinecraftBlockProvider extends APIBase {
     private static MinecraftBlockProvider instance;
     private static final Object MUTEX = new Object();
     private static final String CANNOT_INITIALISE_SINGLETON_TWICE = "Cannot initialise singleton twice!";
@@ -27,8 +28,6 @@ public abstract class MinecraftBlockProvider {
     public static MinecraftBlockProvider getInstance() {
         return instance;
     }
-    protected abstract void apiInit(); //prepare stuff
-    protected abstract void apiPostInit(); //register missing and so on
     protected abstract Substitute<BlockStateRep> getBlock(MinecraftBlock block);
 
 

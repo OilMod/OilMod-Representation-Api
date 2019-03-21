@@ -1,7 +1,17 @@
 package org.oilmod.api.rep.providers.minecraft;
 
-public enum MinecraftItem {
+import org.apache.commons.lang3.Validate;
+import org.oilmod.api.rep.block.BlockStateRep;
+import org.oilmod.api.rep.item.ItemStateRep;
+import org.oilmod.api.rep.providers.RequestEnum;
+import org.oilmod.api.rep.variant.Availability;
+import org.oilmod.api.rep.variant.Substitute;
 
+import java.util.function.Function;
+
+public enum MinecraftItem implements RequestEnum<MinecraftItem, ItemRequest> {
+
+    //<editor-fold desc="Enum Declaration" defaultstate="collapsed">
     ACACIA_BOAT,
     COMMAND_BLOCK_MINECART,
     DANDELION_YELLOW,
@@ -276,5 +286,65 @@ public enum MinecraftItem {
     ZOMBIE_HORSE_SPAWN_EGG,
     ZOMBIE_PIGMAN_SPAWN_EGG,
     ZOMBIE_SPAWN_EGG,
-    ZOMBIE_VILLAGER_SPAWN_EGG,
+    ZOMBIE_VILLAGER_SPAWN_EGG;
+    //</editor-fold>
+
+    private final InitState<MinecraftItem, ItemRequest> initState;
+    private MC112ItemReq mc112;
+    private MC113ItemReq mc113;
+    private static final MinecraftItemProvider provider;
+    private ItemStateRep value;
+    private Availability availability;
+
+    MinecraftItem() {
+        Function<MinecraftItem, ItemRequest> mc112 = Items112::getLinker;
+        Function<MinecraftItem, ItemRequest> mc113 = Items113::getLinker;
+
+        //noinspection unchecked
+        initState = new InitState<>(this, mc112, mc113);
+    }
+
+    static {
+        Validate.notNull(provider = MinecraftItemProvider.getInstance(), "Please set MinecraftItemProvider before accessing any items");
+        for (MinecraftItem item:values()) {
+            item.initState.init();
+        }
+    }
+
+    public MC112ItemReq getMc112() {
+        return mc112;
+    }
+
+    public MC113ItemReq getMc113() {
+        return mc113;
+    }
+
+    @Override
+    public InitState<MinecraftItem, ItemRequest> getInitState() {
+        return initState;
+    }
+
+    @Override
+    public void saveRequest(ItemRequest request) {
+        if (request instanceof MC112ItemReq) {
+            mc112 = (MC112ItemReq) request;
+        } else if (request instanceof MC113ItemReq) {
+            mc113 = (MC113ItemReq) request;
+        }
+    }
+
+    public Availability getAvailability() {
+        return availability;
+    }
+
+    public ItemStateRep get() {
+        return value;
+    }
+
+    @Override
+    public void init() {
+        Substitute<ItemStateRep> sub = provider.getItem(this);
+        value = sub.value;
+        availability = sub.availability;
+    }
 }

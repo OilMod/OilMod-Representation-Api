@@ -8,11 +8,8 @@ import org.oilmod.api.rep.variant.Substitute;
 
 import java.util.function.Function;
 
-@SuppressWarnings("Convert2MethodRef")
 public enum MinecraftBlock implements RequestEnum<MinecraftBlock, BlockRequest> {
-    //for now this seems fine, two problems: massive amount of lamdas makes ide slow, big compiled file size. thanks java. consider decoppeling from constructor and use switch case method instead seeems totally fine change, may also allow modular extention of version support
     //<editor-fold desc="Enum Declaration" defaultstate="collapsed">
-
     ACACIA_BUTTON, //Switch
     ACACIA_DOOR, //Door
     ACACIA_FENCE, //Fence
@@ -619,7 +616,7 @@ public enum MinecraftBlock implements RequestEnum<MinecraftBlock, BlockRequest> 
 
     MinecraftBlock() {
         Function<MinecraftBlock, BlockRequest> mc112 = Blocks112::getLinker;
-        Function<MinecraftBlock, BlockRequest> mc113 = Blocks113.getLinker(this);
+        Function<MinecraftBlock, BlockRequest> mc113 = Blocks113::getLinker;
 
         //noinspection unchecked
         initState = new InitState<>(this, mc112, mc113);
