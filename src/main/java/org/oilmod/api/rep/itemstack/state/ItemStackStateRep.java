@@ -4,12 +4,13 @@ import org.oilmod.api.rep.enchant.EnchantmentRep;
 import org.oilmod.api.rep.item.ItemStateRep;
 import org.oilmod.api.rep.itemstack.ItemStackFactory;
 import org.oilmod.api.rep.itemstack.ItemStackRep;
+import org.oilmod.api.rep.providers.ItemStackStateProvider;
 import org.oilmod.api.util.ReadSet;
 
 import java.util.Map;
 import java.util.Set;
 
-public interface ItemStackStateRep {
+public interface ItemStackStateRep extends ItemStackStateProvider {
     ItemStateRep getItemState();
     void applyItemState(ItemStateRep state);
     boolean isAttached();
@@ -31,6 +32,11 @@ public interface ItemStackStateRep {
 
     default ItemStackStateRep copy() {
         return ItemStackFactory.INSTANCE.cloneStackState(this);
+    }
+
+    @Override
+    default ItemStackStateRep getProvidedItemStackState() {
+        return this;
     }
 
     /**
@@ -63,6 +69,7 @@ public interface ItemStackStateRep {
      *
      * @param ench EnchantmentRep to add
      * @param level Level of the enchantment
+     * @param force makes sure the enchantment is applied even if it doesnt fit or conflict
      * @throws IllegalArgumentException if enchantment null, or enchantment is
      *     not applicable
      */

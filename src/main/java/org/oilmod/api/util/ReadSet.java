@@ -123,10 +123,6 @@ public interface ReadSet<E> extends Iterable<E> {
      * {@code CONCURRENT}, or <em>late-binding</em>. (See {@link #spliterator()}
      * for details.)
      *
-     * @implSpec
-     * The default implementation creates a sequential {@code Stream} from the
-     * collection's {@code Spliterator}.
-     *
      * @return a sequential {@code Stream} over the elements in this collection
      * @since 1.8
      */
@@ -142,10 +138,6 @@ public interface ReadSet<E> extends Iterable<E> {
      * method cannot return a spliterator that is {@code IMMUTABLE},
      * {@code CONCURRENT}, or <em>late-binding</em>. (See {@link #spliterator()}
      * for details.)
-     *
-     * @implSpec
-     * The default implementation creates a parallel {@code Stream} from the
-     * collection's {@code Spliterator}.
      *
      * @return a possibly parallel {@code Stream} over the elements in this
      * collection

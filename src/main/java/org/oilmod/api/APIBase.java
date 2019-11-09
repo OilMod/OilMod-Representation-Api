@@ -1,16 +1,10 @@
 package org.oilmod.api;
 
-import jdk.nashorn.internal.ir.Block;
-import org.apache.commons.lang3.Validate;
-import org.oilmod.api.rep.block.BlockStateRep;
-import org.oilmod.api.rep.providers.minecraft.MC112BlockReq;
-import org.oilmod.api.rep.providers.minecraft.MinecraftBlock;
-import org.oilmod.api.rep.variant.Availability;
-import org.oilmod.api.rep.variant.Substitute;
+import gnu.trove.map.hash.THashMap;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 public abstract class APIBase {
     private List<Exception> exceptions;
@@ -21,14 +15,42 @@ public abstract class APIBase {
 
     protected void apiPostInit() {
         if (exceptions.size() > 0) {
-            StringBuilder sb = new StringBuilder("Some blocks were not correctly mapped to the provider:");
-            for (Exception e:exceptions) {
-                sb.append('\n');
-                sb.append(e.getMessage());
+            StringBuilder sb = new StringBuilder("Some entries were not correctly mapped to the provider:");
+            class ExData {
+                final Exception ex;
+                int count = 1;
+
+                ExData(Exception ex) {
+                    this.ex = ex;
+                }
             }
-            IllegalStateException ex = new IllegalStateException(sb.toString());
+
+            THashMap<String, ExData> map = new THashMap<>();
             for (Exception e:exceptions) {
-                ex.addSuppressed(e);
+                String testStr = e.toString();
+                map.compute(testStr, (s, data) -> {
+                    if (data == null) {
+                        return new ExData(e);
+                    }
+                    data.count++;
+                    return data;
+                });
+            }
+            for(ExData entry:map.values()) {
+                sb.append("\nThe following error occurred ");
+                sb.append(entry.count);
+                sb.append(" times: \"");
+                sb.append(entry.ex.getMessage());
+                sb.append('\"');
+            }
+            sb.append("\nWithin ");
+            sb.append(exceptions.size());
+            sb.append(", ");
+            sb.append(map.size());
+            sb.append(" unique exceptions occurred.");
+            IllegalStateException ex = new IllegalStateException(sb.toString());
+            for(ExData entry:map.values()) {
+                ex.addSuppressed(entry.ex);
             }
             throw ex;
         }

@@ -9,9 +9,35 @@ import org.oilmod.api.rep.world.VectorRep;
 import org.oilmod.api.rep.world.WorldRep;
 
 public class LocFactoryImpl implements LocFactory {
-    public static LocFactory INSTANCE = new LocFactoryImpl();
+    private static final Object MUTEX = new Object();
+    private static LocFactory instance;
+    private static final String CANNOT_INITIALISE_SINGLETON_TWICE = "Cannot initialise singleton twice!";
 
     protected LocFactoryImpl() {}
+
+
+    public static void setInstance(LocFactoryImpl instance) {
+        if (LocFactoryImpl.instance == null) {
+            synchronized (MUTEX) {
+                if (LocFactoryImpl.instance == null) {
+                    LocFactoryImpl.instance = instance;
+                } else {
+                    throw new IllegalStateException(CANNOT_INITIALISE_SINGLETON_TWICE);
+                }
+            }
+        } else {
+            throw new IllegalStateException(CANNOT_INITIALISE_SINGLETON_TWICE);
+        }
+    }
+
+    public static LocFactory getInstance() {
+        if (instance == null) throw new IllegalStateException("LocFactoryImpl is not initialised either call initStandard() or provide own implementation during application setup");
+        return instance;
+    }
+
+    public static void initStandard() {
+        setInstance(new LocFactoryImpl());
+    }
 
     @Override
     public VectorRep createVector(double x, double y, double z) {

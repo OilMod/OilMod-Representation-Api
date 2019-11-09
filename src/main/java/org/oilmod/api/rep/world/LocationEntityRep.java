@@ -7,7 +7,7 @@ public interface LocationEntityRep extends LocationRep {
     double getYaw();
 
     default LocationEntityRep createLocation(double x, double y, double z, double yaw, double pitch, WorldRep w) {
-        return LocFactoryImpl.INSTANCE.createEntityLocation(x, y, z, yaw, pitch, w);
+        return LocFactoryImpl.getInstance().createEntityLocation(x, y, z, yaw, pitch, w);
     }
 
     default LocBuilder toBuilder() {

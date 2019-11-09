@@ -2,20 +2,20 @@ package org.oilmod.api.rep.providers.minecraft;
 
 import org.apache.commons.lang3.Validate;
 import org.oilmod.api.rep.block.BlockStateRep;
+import org.oilmod.api.rep.providers.BlockStateProvider;
 import org.oilmod.api.rep.providers.RequestEnum;
 import org.oilmod.api.rep.variant.Availability;
 import org.oilmod.api.rep.variant.Substitute;
 
 import java.util.function.Function;
 
-public enum MinecraftBlock implements RequestEnum<MinecraftBlock, BlockRequest> {
-    //<editor-fold desc="Enum Declaration" defaultstate="collapsed">
+public enum MinecraftBlock implements RequestEnum<MinecraftBlock, BlockRequest>, BlockStateProvider {
     ACACIA_BUTTON, //Switch
     ACACIA_DOOR, //Door
     ACACIA_FENCE, //Fence
     ACACIA_FENCE_GATE, //Gate
     ACACIA_LEAVES, //Leaves
-    ACACIA_LOG, //Orientable
+    ACACIA_LOG, //Orientable<
     ACACIA_PLANKS,
     ACACIA_PRESSURE_PLATE, //Powerable
     ACACIA_SAPLING, //Sapling
@@ -667,5 +667,10 @@ public enum MinecraftBlock implements RequestEnum<MinecraftBlock, BlockRequest> 
         Substitute<BlockStateRep> sub = provider.getBlock(this);
         value = sub.value;
         availability = sub.availability;
+    }
+
+    @Override
+    public BlockStateRep getProvidedBlockState() {
+        return get();
     }
 }

@@ -2,14 +2,16 @@ package org.oilmod.api.rep.providers.minecraft;
 
 import org.apache.commons.lang3.Validate;
 import org.oilmod.api.rep.block.BlockStateRep;
+import org.oilmod.api.rep.item.ItemRep;
 import org.oilmod.api.rep.item.ItemStateRep;
-import org.oilmod.api.rep.providers.RequestEnum;
+import org.oilmod.api.rep.itemstack.state.ItemStackStateRep;
+import org.oilmod.api.rep.providers.*;
 import org.oilmod.api.rep.variant.Availability;
 import org.oilmod.api.rep.variant.Substitute;
 
 import java.util.function.Function;
 
-public enum MinecraftItem implements RequestEnum<MinecraftItem, ItemRequest> {
+public enum MinecraftItem implements RequestEnum<MinecraftItem, ItemRequest>, ItemStateProvider, ItemProvider {
 
     //<editor-fold desc="Enum Declaration" defaultstate="collapsed">
     ACACIA_BOAT,
@@ -338,10 +340,24 @@ public enum MinecraftItem implements RequestEnum<MinecraftItem, ItemRequest> {
         return value;
     }
 
+    public ItemRep getItem() {
+        return value.getItem();
+    }
+
     @Override
     public void init() {
         Substitute<ItemStateRep> sub = provider.getItem(this);
         value = sub.value;
         availability = sub.availability;
+    }
+
+    @Override
+    public ItemRep getProvidedItem() {
+        return getItem();
+    }
+
+    @Override
+    public ItemStateRep getProvidedItemState() {
+        return get();
     }
 }

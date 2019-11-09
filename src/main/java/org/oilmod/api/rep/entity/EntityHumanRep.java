@@ -27,7 +27,7 @@ public interface EntityHumanRep extends EntityLivingRep {
      *
      * @return The ItemStack of the item you are currently holding.
      * @deprecated Humans may now dual wield in their off hand, use explicit
-     * methods in {@link PlayerInventory}.
+     * methods in TODO PlayerInventory.
      */
     public ItemStackRep getItemInHand();
 
@@ -44,7 +44,7 @@ public interface EntityHumanRep extends EntityLivingRep {
      * user was moving. Will always be empty if the player currently has no
      * open window.
      *
-     * @param item The ItemStack which will end up in the hand
+     * @param stack The ItemStack which will end up in the hand
      */
     public void setItemOnCursor(ItemStackRep stack);
 

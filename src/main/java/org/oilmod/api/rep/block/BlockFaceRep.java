@@ -1,6 +1,10 @@
 package org.oilmod.api.rep.block;
 
-public enum BlockFaceRep {
+import org.oilmod.api.rep.world.VectorRep;
+import org.oilmod.api.rep.world.internal.GeneralIntVector;
+import org.oilmod.api.rep.world.internal.GeneralVector;
+
+public enum BlockFaceRep implements GeneralIntVector {
     NORTH(0, 0, -1),
     EAST(1, 0, 0),
     SOUTH(0, 0, 1),
@@ -68,5 +72,35 @@ public enum BlockFaceRep {
 
         }
         throw new IllegalArgumentException("not a valid blockface");
+    }
+
+    @Override
+    public double getX() {
+        return modX;
+    }
+
+    @Override
+    public double getY() {
+        return modY;
+    }
+
+    @Override
+    public double getZ() {
+        return modZ;
+    }
+
+    @Override
+    public int getBlockX() {
+        return modX;
+    }
+
+    @Override
+    public int getBlockY() {
+        return modY;
+    }
+
+    @Override
+    public int getBlockZ() {
+        return modZ;
     }
 }
