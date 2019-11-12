@@ -4,6 +4,7 @@ import org.oilmod.api.rep.enchant.EnchantmentRep;
 import org.oilmod.api.rep.itemstack.ItemStackFactory;
 import org.oilmod.api.rep.providers.ItemStackStateProvider;
 import org.oilmod.api.rep.states.implapi.IImplementation;
+import org.oilmod.api.rep.states.implapi.ImplementationBase;
 import org.oilmod.api.rep.states.implapi.StateImplementationResolver;
 import org.oilmod.api.util.ReadSet;
 
@@ -63,7 +64,7 @@ public final class Enchantment {
 
     }
 
-    public abstract static class EnchantmentHelper implements IImplementation<EnchantmentHelper, ItemStackStateRep> {
+    public abstract static class EnchantmentHelper extends ImplementationBase<EnchantmentHelper, ItemStackStateRep> {
 
         protected abstract int getEnchantmentLevel(ItemStackStateRep state, EnchantmentRep ench);
 

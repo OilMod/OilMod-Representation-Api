@@ -10,5 +10,5 @@ public interface IImplementation<TImpl extends IImplementation<TImpl, TData>, TD
     }
     void apply(TData from, TData to, TImpl toImpl, boolean additive, boolean force);
     StateImplementationResolver<TImpl, TData> getResolver();
-    StateImplementationResolver<TImpl, TData> setResolver();
+    void setResolver(StateImplementationResolver<TImpl, TData> resolver);
 }
