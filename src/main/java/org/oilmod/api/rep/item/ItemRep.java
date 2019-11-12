@@ -11,4 +11,6 @@ public interface ItemRep extends ItemProvider {
     default ItemRep getProvidedItem() {
         return this;
     }
+
+    boolean isSimilar(ItemProvider item);
 }

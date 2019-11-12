@@ -4,8 +4,11 @@ import org.oilmod.api.rep.enchant.EnchantmentRep;
 import org.oilmod.api.rep.item.ItemRep;
 import org.oilmod.api.rep.item.ItemStateRep;
 import org.oilmod.api.rep.itemstack.state.ItemStackStateRep;
+import org.oilmod.api.rep.providers.ItemProvider;
+import org.oilmod.api.rep.providers.ItemStackStateProvider;
+import org.oilmod.api.rep.providers.ItemStateProvider;
 
-public interface ItemStackRep {
+public interface ItemStackRep extends ItemStackStateProvider, ItemStateProvider, ItemProvider {
 
     ItemRep getItem();
 
@@ -46,7 +49,7 @@ public interface ItemStackRep {
      * @param stack the item stack to compare to
      * @return true if the two stacks are equal, ignoring the amount
      */
-    boolean isSimilar(ItemStackRep stack);
+    boolean isSimilar(ItemStackStateProvider stack);
 
     ItemStackRep copy();
 
@@ -73,4 +76,18 @@ public interface ItemStackRep {
 
     boolean isEmpty();
 
+    @Override
+    default ItemStackStateRep getProvidedItemStackState() {
+        return getItemStackState();
+    }
+
+    @Override
+    default ItemRep getProvidedItem() {
+        return getItem();
+    }
+
+    @Override
+    default ItemStateRep getProvidedItemState() {
+        return getItemState();
+    }
 }

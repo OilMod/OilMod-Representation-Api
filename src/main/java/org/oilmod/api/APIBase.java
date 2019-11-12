@@ -1,6 +1,6 @@
 package org.oilmod.api;
 
-import gnu.trove.map.hash.THashMap;
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ public abstract class APIBase {
                 }
             }
 
-            THashMap<String, ExData> map = new THashMap<>();
+            Map<String, ExData> map = new Object2ObjectOpenHashMap<>();
             for (Exception e:exceptions) {
                 String testStr = e.toString();
                 map.compute(testStr, (s, data) -> {

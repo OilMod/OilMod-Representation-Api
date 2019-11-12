@@ -6,9 +6,11 @@ import org.oilmod.api.rep.item.BlockItemRep;
 import org.oilmod.api.rep.item.ItemRep;
 import org.oilmod.api.rep.item.ItemStateRep;
 import org.oilmod.api.rep.itemstack.state.ItemStackStateRep;
+import org.oilmod.api.rep.states.implapi.StateCollector;
 import org.oilmod.api.rep.stdimpl.itemstack.state.ItemStackStateImpl;
 
 public abstract class ItemStackFactory {
+    public static StateCollector<ItemStackStateRep> STATE_COLLECTOR = new StateCollector<>();
     public static ItemStackFactory INSTANCE;
 
     public ItemStackRep create(ItemRep item) {

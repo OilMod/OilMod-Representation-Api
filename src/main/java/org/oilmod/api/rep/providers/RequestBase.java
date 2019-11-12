@@ -1,6 +1,6 @@
 package org.oilmod.api.rep.providers;
 
-import gnu.trove.set.hash.THashSet;
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import org.oilmod.api.rep.variant.Availability;
 
 import java.util.Collections;
@@ -8,7 +8,7 @@ import java.util.Set;
 
 @SuppressWarnings("unchecked")
 public class RequestBase<TDep, TRequest extends Request<TDep>> implements Request<TDep> {
-    protected final Set<TDep> deps = new THashSet<>();
+    protected final Set<TDep> deps = new ObjectOpenHashSet<>();
     private final Set<TDep> depsRead = Collections.unmodifiableSet(deps);
     private boolean initialised;
 

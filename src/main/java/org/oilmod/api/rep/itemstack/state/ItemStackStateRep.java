@@ -1,34 +1,23 @@
 package org.oilmod.api.rep.itemstack.state;
 
 import org.oilmod.api.rep.enchant.EnchantmentRep;
+import org.oilmod.api.rep.item.ItemRep;
 import org.oilmod.api.rep.item.ItemStateRep;
 import org.oilmod.api.rep.itemstack.ItemStackFactory;
-import org.oilmod.api.rep.itemstack.ItemStackRep;
+import org.oilmod.api.rep.providers.ItemProvider;
 import org.oilmod.api.rep.providers.ItemStackStateProvider;
+import org.oilmod.api.rep.providers.ItemStateProvider;
 import org.oilmod.api.util.ReadSet;
 
-import java.util.Map;
-import java.util.Set;
-
-public interface ItemStackStateRep extends ItemStackStateProvider {
+public interface ItemStackStateRep extends ItemStackStateProvider, ItemStateProvider, ItemProvider {
     ItemStateRep getItemState();
     void applyItemState(ItemStateRep state);
     boolean isAttached();
 
-    default void applyTo(ItemStackRep stack) {
-        applyTo(stack.getItemStackState());
+    default void applyTo(ItemStackStateProvider state, boolean additive, boolean force) {
+        ItemStackFactory.STATE_COLLECTOR.apply(this, state.getProvidedItemStackState(), additive, force);
     }
 
-    default void applyTo(ItemStackStateRep to) {
-        to.applyItemState(getItemState());
-        to.setItemDamage(getItemDamage());
-        for (EnchantmentRep ench:to.getEnchantments()) {
-            to.removeEnchantment(ench);
-        }
-        for (EnchantmentRep ench:getEnchantments()) {
-            to.addEnchantment(ench, getEnchantmentLevel(ench), true); //assumed to be valid or already forced
-        }
-    }
 
     default ItemStackStateRep copy() {
         return ItemStackFactory.INSTANCE.cloneStackState(this);
@@ -37,6 +26,16 @@ public interface ItemStackStateRep extends ItemStackStateProvider {
     @Override
     default ItemStackStateRep getProvidedItemStackState() {
         return this;
+    }
+
+    @Override
+    default ItemStateRep getProvidedItemState() {
+        return getItemState();
+    }
+
+    @Override
+    default ItemRep getProvidedItem() {
+        return getItemState().getItem();
     }
 
     /**
@@ -53,37 +52,16 @@ public interface ItemStackStateRep extends ItemStackStateProvider {
      */
     int getItemDamage();
 
-    /**
-     * Gets the level of the specified enchantment on this item stack
-     *
-     * @param ench EnchantmentRep to check
-     * @return Level of the enchantment, or 0
-     */
-    int getEnchantmentLevel(EnchantmentRep ench);
 
-    /**
-     * Adds the specified {@link EnchantmentRep} to this item stack.
-     * <p>
-     * If this item stack already contained the given enchantment (at any
-     * level), it will be replaced.
-     *
-     * @param ench EnchantmentRep to add
-     * @param level Level of the enchantment
-     * @param force makes sure the enchantment is applied even if it doesnt fit or conflict
-     * @throws IllegalArgumentException if enchantment null, or enchantment is
-     *     not applicable
-     */
-    void addEnchantment(EnchantmentRep ench, int level, boolean force);
 
 
     /**
-     * Removes the specified {@link EnchantmentRep} if it exists on this
-     * ItemStack
+     * This method is the same as equals, but does not consider stack size
+     * (amount).
      *
-     * @param ench EnchantmentRep to remove
-     * @return Previous level, or 0
+     * @param stack the item stack to compare to
+     * @return true if the two stacks are equal, ignoring the amount
      */
-    int removeEnchantment(EnchantmentRep ench);
+    boolean isSimilar(ItemStackStateProvider state);
 
-    ReadSet<? extends EnchantmentRep> getEnchantments();
 }

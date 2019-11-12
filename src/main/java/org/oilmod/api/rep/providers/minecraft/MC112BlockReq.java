@@ -1,6 +1,6 @@
 package org.oilmod.api.rep.providers.minecraft;
 
-import gnu.trove.set.hash.THashSet;
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import org.oilmod.api.rep.providers.KeyedRequestBase;
 import org.oilmod.api.rep.providers.Request;
 import org.oilmod.api.rep.providers.RequestBase;
@@ -8,7 +8,7 @@ import org.oilmod.api.rep.providers.RequestBase;
 import java.util.Set;
 
 public class MC112BlockReq extends KeyedRequestBase<MinecraftBlock, MC112BlockReq> implements BlockRequest{
-    private Set<Property> properties = new THashSet<>();
+    private Set<Property> properties = new ObjectOpenHashSet<>();
 
 
     public MC112BlockReq(MinecraftBlock b) {
