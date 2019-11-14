@@ -11,8 +11,10 @@ public class StateImplementationResolver<TImpl extends IImplementation<TImpl, TD
     private ObjectSortedSet<TImpl> setupSet = new ObjectRBTreeSet<>((o1, o2) -> (o2.isGeneral() == o1.isGeneral() ? 0 : (o2.isGeneral() ? 1 : -1)));
     private TImpl[] implementations;
 
-    public StateImplementationResolver(StateCollector associatedStateCollector) {
+    public StateImplementationResolver(StateCollector associatedStateCollector, TImpl[] arrayExample) {
         this.associatedStateCollector = associatedStateCollector;
+        this.implementations = arrayExample.clone();
+        if (arrayExample.length != 0)throw new IllegalArgumentException("type example array has to be of length 0");
         //noinspection unchecked
         associatedStateCollector.addResolver(this);
     }
@@ -24,7 +26,7 @@ public class StateImplementationResolver<TImpl extends IImplementation<TImpl, TD
     void freeze() {
         if (isFrozen()) throw new IllegalStateException("Cannot freeze twice");
         //noinspection unchecked
-        implementations = (TImpl[]) setupSet.toArray();
+        implementations = (TImpl[]) setupSet.toArray(implementations);
         setupSet = null;
     }
 

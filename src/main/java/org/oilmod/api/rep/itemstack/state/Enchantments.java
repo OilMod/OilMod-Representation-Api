@@ -9,8 +9,8 @@ import org.oilmod.api.rep.states.implapi.StateImplementationResolver;
 import org.oilmod.api.util.ReadSet;
 
 
-public final class Enchantment {
-    public final static StateImplementationResolver<EnchantmentHelper, ItemStackStateRep> RESOLVER = new StateImplementationResolver<>(ItemStackFactory.STATE_COLLECTOR);
+public final class Enchantments {
+    public final static StateImplementationResolver<EnchantmentHelper, ItemStackStateRep> RESOLVER = new StateImplementationResolver<>(ItemStackFactory.STATE_COLLECTOR, new EnchantmentHelper[]{});
 
     /**
      * Gets the level of the specified enchantment on this item stack
@@ -61,7 +61,8 @@ public final class Enchantment {
 
 
     public static void removeAll(ItemStackStateProvider stateProv) {
-
+        ItemStackStateRep state = stateProv.getProvidedItemStackState();
+        RESOLVER.findApplicable(state).removeAll(state);
     }
 
     public abstract static class EnchantmentHelper extends ImplementationBase<EnchantmentHelper, ItemStackStateRep> {
@@ -74,7 +75,7 @@ public final class Enchantment {
 
         protected abstract ReadSet<? extends EnchantmentRep> getEnchantments(ItemStackStateRep state);
 
-        protected abstract void removeAll(ItemStackStateProvider stateProv);
+        protected abstract void removeAll(ItemStackStateRep state);
 
         @Override
         public void apply(ItemStackStateRep from, ItemStackStateRep to, EnchantmentHelper toImpl, boolean additive, boolean force) {

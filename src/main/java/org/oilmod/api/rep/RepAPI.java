@@ -1,6 +1,10 @@
 package org.oilmod.api.rep;
 
 import org.oilmod.api.rep.itemstack.ItemStackFactory;
+import org.oilmod.api.rep.itemstack.state.DisplayName;
+import org.oilmod.api.rep.itemstack.state.Durability;
+import org.oilmod.api.rep.itemstack.state.Enchantments;
+import org.oilmod.api.rep.itemstack.state.Inventory;
 import org.oilmod.api.rep.providers.minecraft.MinecraftBlockProvider;
 import org.oilmod.api.rep.providers.minecraft.MinecraftItem;
 import org.oilmod.api.rep.providers.minecraft.MinecraftItemProvider;
@@ -10,12 +14,19 @@ public abstract class RepAPI {
     private  ItemStackFactory itemStackFactory;
     private MinecraftBlockProvider mcBlockProvider;
     private MinecraftItemProvider mcItemProvider;
+    private Enchantments.EnchantmentHelper enchantmentHelper;
+    private DisplayName.DisplayNameHelper displayNameHelper;
+    private Durability.DurabilityHelper durabilityHelper;
+    private Inventory.InventoryHelper inventoryHelper;
 
 
     protected abstract ItemStackFactory createItemStackFactory();
     protected abstract MinecraftBlockProvider createMCBlockProvider();
     protected abstract MinecraftItemProvider createMCItemProvider();
-
+    protected abstract  Enchantments.EnchantmentHelper createEnchantmentHelper();
+    protected abstract  DisplayName.DisplayNameHelper createDisplayNameHelper();
+    protected abstract  Durability.DurabilityHelper createDurabilityHelper();
+    protected abstract  Inventory.InventoryHelper createInventoryHelper();
 
     public ItemStackFactory getItemStackFactory() {
         return itemStackFactory;
@@ -29,12 +40,29 @@ public abstract class RepAPI {
         return mcItemProvider;
     }
 
+    public Enchantments.EnchantmentHelper getEnchantmentHelper() {
+        return enchantmentHelper;
+    }
+
+    public Inventory.InventoryHelper getInventoryHelper() {
+        return inventoryHelper;
+    }
+
+    public DisplayName.DisplayNameHelper getDisplayNameHelper() {
+        return displayNameHelper;
+    }
+
+    public Durability.DurabilityHelper getDurabilityHelper() {
+        return durabilityHelper;
+    }
+
     public void init() {
         if (initialised) return;
         
         createAll();
         setAll();
         initAll();
+        freezeAPI();
         
         initialised = true;
     }
@@ -43,6 +71,10 @@ public abstract class RepAPI {
         itemStackFactory = createItemStackFactory();
         mcBlockProvider = createMCBlockProvider();
         mcItemProvider = createMCItemProvider();
+        enchantmentHelper = createEnchantmentHelper();
+        displayNameHelper = createDisplayNameHelper();
+        durabilityHelper = createDurabilityHelper();
+        inventoryHelper = createInventoryHelper();
     }
 
 
@@ -50,12 +82,20 @@ public abstract class RepAPI {
         ItemStackFactory.INSTANCE = getItemStackFactory();
         MinecraftBlockProvider.setInstance(getMCBlockProvider());
         MinecraftItemProvider.setInstance(getMCItemProvider());
+        Enchantments.RESOLVER.addImplementation(getEnchantmentHelper());
+        DisplayName.RESOLVER.addImplementation(getDisplayNameHelper());
+        Durability.RESOLVER.addImplementation(getDurabilityHelper());
+        Inventory.RESOLVER.addImplementation(getInventoryHelper());
     }
     
     protected void initAll()  {
         //no itemStackFactory init currently maybe add
         MinecraftBlockProvider.init();
         MinecraftItemProvider.init();
+    }
+
+    protected void freezeAPI() {
+        ItemStackFactory.STATE_COLLECTOR.freeze();
     }
 
     public static void installImplementation(RepAPI repAPI) {
