@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class APIBase {
-    private List<Exception> exceptions;
+    private List<Throwable> exceptions;
 
     protected void apiInit() {
         exceptions = new ArrayList<>();
@@ -17,16 +17,16 @@ public abstract class APIBase {
         if (exceptions.size() > 0) {
             StringBuilder sb = new StringBuilder("Some entries were not correctly mapped to the provider:");
             class ExData {
-                final Exception ex;
+                final Throwable ex;
                 int count = 1;
 
-                ExData(Exception ex) {
+                ExData(Throwable ex) {
                     this.ex = ex;
                 }
             }
 
             Map<String, ExData> map = new Object2ObjectOpenHashMap<>();
-            for (Exception e:exceptions) {
+            for (Throwable e:exceptions) {
                 String testStr = e.toString();
                 map.compute(testStr, (s, data) -> {
                     if (data == null) {
@@ -57,7 +57,9 @@ public abstract class APIBase {
         exceptions = null;
     }
 
-    protected void reportError(Exception e) {
+    protected <T extends Throwable> void reportError(T e) throws T {
+        if (exceptions == null)throw e;
         exceptions.add(e);
+
     }
 }
