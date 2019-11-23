@@ -8,8 +8,22 @@ import org.oilmod.api.rep.item.ItemStateRep;
 import org.oilmod.api.rep.itemstack.state.ItemStackStateRep;
 import org.oilmod.api.rep.states.implapi.StateCollector;
 import org.oilmod.api.rep.stdimpl.itemstack.state.ItemStackStateImpl;
+import org.oilmod.spi.mpi.SingleMPI;
+import org.oilmod.spi.provider.IMPIImplementationProvider;
+import org.oilmod.spi.provider.ImplementationBase;
 
-public abstract class ItemStackFactory {
+import static org.oilmod.util.LamdbaCastUtils.cast;
+
+public abstract class ItemStackFactory<Impl extends ItemStackFactory<Impl>> extends ImplementationBase<ItemStackFactory.ItemStackFactoryMPI, ItemStackFactory<?>, Impl> {
+
+    public static class ItemStackFactoryMPI extends SingleMPI<ItemStackFactoryMPI, ItemStackFactory<?>> {
+
+        @Override
+        protected void onSetProvider(ItemStackFactory<?> provider) {
+            INSTANCE = provider;
+        }
+    }
+
     public static StateCollector<ItemStackStateRep> STATE_COLLECTOR = new StateCollector<>();
     public static ItemStackFactory INSTANCE;
 
