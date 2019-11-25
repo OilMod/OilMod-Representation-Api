@@ -7,5 +7,6 @@ public interface InventoryRep {
     int getTotalSize();
     ItemStackRep getStored(int slot);
     void setStored(int slot, ItemStackRep stack);
+    boolean isNative();
     //todo add more stuff, accessible, special etc
 }
