@@ -7,7 +7,7 @@ public class ImmutableBooleanState extends ImmutableValueStateBase {
     private boolean value;
 
 
-    private ImmutableBooleanState(){}
+    public ImmutableBooleanState(){}
 
     @Override
     protected void reset() {

@@ -46,7 +46,7 @@ public abstract class ImmutableValueStateBase implements IStateHolder {
     }
 
     protected boolean hasBeenSet() {
-        return setFlagBackup>=currentBackup;
+        return setFlagBackup<=currentBackup;
     }
 
     protected int getCurrentBackup() {

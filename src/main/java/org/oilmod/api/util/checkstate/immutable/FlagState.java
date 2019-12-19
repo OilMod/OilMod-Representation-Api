@@ -7,7 +7,7 @@ public class FlagState extends ImmutableValueStateBase {
 
 
 
-    private FlagState(){}
+    public FlagState(){}
 
     @Override
     protected void reset() {

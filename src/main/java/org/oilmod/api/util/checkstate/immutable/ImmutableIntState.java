@@ -7,7 +7,7 @@ public class ImmutableIntState extends ImmutableValueStateBase {
     private int value;
 
 
-    private ImmutableIntState(){}
+    public ImmutableIntState(){}
 
     @Override
     protected void reset() {

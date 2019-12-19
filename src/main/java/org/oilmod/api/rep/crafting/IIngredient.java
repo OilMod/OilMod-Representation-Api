@@ -19,4 +19,5 @@ public interface IIngredient {
      */
     List<ItemStackRep> getExamples();
     boolean check(ItemStackRep rep, ICheckState checkState);
+    ItemStackRep consume(ItemStackRep rep, int multiplier, ICheckState checkState);
 }

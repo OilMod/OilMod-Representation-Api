@@ -1,5 +1,6 @@
 package org.oilmod.api.rep.crafting;
 
+import org.oilmod.api.rep.itemstack.ItemStackConsumerRep;
 import org.oilmod.api.util.checkstate.ICheckState;
 
 public interface IMatcher {
@@ -17,6 +18,7 @@ public interface IMatcher {
     int getInputWidth();
     int getInputHeight();
     int getInputSize();
+    int process(IIngredientSupplier supplier, ICheckState checkState, ItemStackConsumerRep stackConsumer, int amount, boolean simulate);
 
 
     //IIngredientCategory getCategory();

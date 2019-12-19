@@ -48,14 +48,21 @@ public interface InventoryRep {
 
         for (int i = 0; i < getSize(); i++) {
             ItemStackRep slotStack = getStored(i);
-            if (slotStack.isEmpty()) {
+            if (slotStack.getAmount() >= max)continue;
+            boolean slotEmpty = slotStack.isEmpty();
+
+            if (slotEmpty && stack.getAmount() <= max) {
                 setStored(i, stack);
                 return ItemStackFactory.INSTANCE.empty();
             }
-            if (slotStack.isSimilar(stack)) {
+            if (slotEmpty || slotStack.isSimilar(stack)) {
                 int fill = Math.min(max, slotStack.getAmount() + stack.getAmount());
-                int remaining = Math.min(0, stack.getAmount() - fill);
-                slotStack.setAmount(fill);
+                int remaining = Math.min(0, (slotStack.getAmount() + stack.getAmount()) - fill);
+                if (slotEmpty) {
+                    setStored(i, stack.asQuantity(fill));
+                } else {
+                    slotStack.setAmount(fill);
+                }
                 if (remaining > 0) {
                     stack.setAmount(remaining);
                 } else {

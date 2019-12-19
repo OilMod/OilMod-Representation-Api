@@ -49,7 +49,7 @@ public interface ItemStackRep extends ItemStackStateProvider, ItemStateProvider,
      * @param stack the item stack to compare to
      * @return true if the two stacks are equal, ignoring the amount
      */
-    boolean isSimilar(ItemStackStateProvider stack);
+    boolean isSimilar(ItemStackStateProvider stack); //name suggestion areStackable/isCoStackable
 
     ItemStackRep copy();
 
