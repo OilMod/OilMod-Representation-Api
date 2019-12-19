@@ -10,6 +10,9 @@ import org.oilmod.api.rep.variant.Substitute;
 import java.util.function.Function;
 
 public enum MinecraftBlock implements RequestEnum<MinecraftBlock, BlockRequest>, BlockStateProvider {
+
+
+    //<editor-fold desc="Enum Declaration" defaultstate="collapsed">
     ACACIA_BUTTON, //Switch
     ACACIA_DOOR, //Door
     ACACIA_FENCE, //Fence

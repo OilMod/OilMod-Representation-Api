@@ -24,7 +24,7 @@ public class Inventory {
         public void apply(ItemStackStateRep from, ItemStackStateRep to, InventoryHelper toImpl, boolean additive, boolean force) {
             InventoryRep i1 = get(from);
             InventoryRep i2 = toImpl.get(to);
-            int max = Math.min(i1.getStorageSize(), i2.getStorageSize());
+            int max = Math.min(i1.getSize(), i2.getSize());
             for (int i = 0; i < max; i++) {
                 ItemStackRep stack = i1.getStored(i);
                 if (!stack.isEmpty() || additive) {
