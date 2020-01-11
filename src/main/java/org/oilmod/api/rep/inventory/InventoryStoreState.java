@@ -49,7 +49,7 @@ public class InventoryStoreState {
                 return 0;
             } else if (slotEmpty || stack.isSimilar(getState(i))) {
                 int fill = Math.min(max, slotStackAmount + remaining);
-                remaining = Math.min(0, slotStackAmount + remaining - fill);
+                remaining = Math.max(0, slotStackAmount + remaining - fill);
                 overriddenAmount[i] = fill;
                 if (remaining == 0) {
                     return 0;

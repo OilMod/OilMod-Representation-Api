@@ -9,6 +9,8 @@ public interface IIngredientSupplier {
     boolean isShaped();
     ItemStackRep getSupplied(int index);
     ItemStackRep getSupplied(int left, int top);
+    int getSupSlotMaxStack(int index);
+    int getSupSlotMaxStack(int left, int top);
 
     /**
      * This is the reduced width. empty columns are not be counted!

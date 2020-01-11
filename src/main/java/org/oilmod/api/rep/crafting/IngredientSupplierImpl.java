@@ -31,6 +31,16 @@ public class IngredientSupplierImpl implements IIngredientSupplier {
     }
 
     @Override
+    public int getSupSlotMaxStack(int index) {
+        return inv.getMaxStack(index);
+    }
+
+    @Override
+    public int getSupSlotMaxStack(int left, int top) {
+        return inv.getMaxStack(left, top);
+    }
+
+    @Override
     public int getSuppliedWidth() {
         return inv.getWidth();
     }

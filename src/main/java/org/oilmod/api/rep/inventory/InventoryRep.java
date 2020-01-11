@@ -37,6 +37,12 @@ public interface InventoryRep {
         return new InventoryViewImpl(this, indexOffset, width, height);
     }
 
+
+    int getMaxStack(int slot);
+    default int getMaxStack(int left, int top) {
+        return getMaxStack(convert2DIndex(this, left, top));
+    }
+
     default void clear() {
         for (int i = 0; i < getSize(); i++) {
             setStored(i, ItemStackFactory.INSTANCE.empty());
@@ -44,19 +50,20 @@ public interface InventoryRep {
     }
 
     default ItemStackRep store(ItemStackRep stack) {
-        int max = stack.getMaxStackSize(); //todo add inv max
+        int max = stack.getMaxStackSize();
 
         for (int i = 0; i < getSize(); i++) {
             ItemStackRep slotStack = getStored(i);
-            if (slotStack.getAmount() >= max)continue;
             boolean slotEmpty = slotStack.isEmpty();
 
-            if (slotEmpty && stack.getAmount() <= max) {
+            int slotMax = Math.min(max, getMaxStack(i));
+
+            if (slotEmpty && stack.getAmount() <= slotMax) {
                 setStored(i, stack);
                 return ItemStackFactory.INSTANCE.empty();
             }
             if (slotEmpty || slotStack.isSimilar(stack)) {
-                int fill = Math.min(max, slotStack.getAmount() + stack.getAmount());
+                int fill = Math.min(slotMax, slotStack.getAmount() + stack.getAmount());
                 int remaining = Math.min(0, (slotStack.getAmount() + stack.getAmount()) - fill);
                 if (slotEmpty) {
                     setStored(i, stack.asQuantity(fill));
@@ -84,7 +91,7 @@ public interface InventoryRep {
     //todo add more stuff, accessible etc
 
     static int convert2DIndex(InventoryRep inv, int left, int top) {
-        if (!inv.is2d() && top != 0) throw new IllegalArgumentException("Cannot request top != 1 for 1D inventory");
+        if (!inv.is2d() && top != 0) throw new IllegalArgumentException("Cannot request top != 0 for 1D inventory");
         return left + top * inv.getWidth();
     }
 }

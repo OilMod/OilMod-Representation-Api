@@ -35,6 +35,17 @@ public interface InventoryView extends InventoryRep {
         return getRoot().getStored(getLeftOff() + left, getTopOff() + top);
     }
 
+
+    default int getMaxStack(int slot) {
+        return getRoot().getMaxStack(translateIndex(slot));
+    }
+    default int getMaxStack(int left, int top) {
+        if (!getRoot().is2d()) {
+            return getRoot().getMaxStack(translateIndex(left, top));
+        }
+        return getRoot().getMaxStack(getLeftOff() + left, getTopOff() + top);
+    }
+
     @Override
     default void setStored(int slot, ItemStackRep stack) {
         getRoot().setStored(translateIndex(slot), stack);

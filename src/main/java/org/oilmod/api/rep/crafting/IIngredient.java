@@ -1,5 +1,6 @@
 package org.oilmod.api.rep.crafting;
 
+import org.oilmod.api.rep.itemstack.ItemStackConsumerRep;
 import org.oilmod.api.rep.itemstack.ItemStackRep;
 import org.oilmod.api.util.checkstate.ICheckState;
 
@@ -19,5 +20,5 @@ public interface IIngredient {
      */
     List<ItemStackRep> getExamples();
     boolean check(ItemStackRep rep, ICheckState checkState);
-    ItemStackRep consume(ItemStackRep rep, int multiplier, ICheckState checkState);
+    int consume(ItemStackRep rep, ItemStackConsumerRep stackConsumer, int multiplier, int maxStack, ICheckState checkState, boolean simulate);
 }
