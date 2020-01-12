@@ -14,7 +14,7 @@ import java.util.Set;
 public class ItemStackStateImpl implements ItemStackStateRep {
     private ItemStateRep state;
     private int itemDamage;
-    //private Map<EnchantmentRep, Integer> enchantments = new THashMap<>();
+    //private Map<EnchantmentRep, Integer> enchantments = new Object2ObjectOpenHashMap<>();
 
     //if we actually want to do this we need to provide an implementation for every state resolver that deals only with api-level data, probably well implementable by class->valueObject hashmap todo consider
 
