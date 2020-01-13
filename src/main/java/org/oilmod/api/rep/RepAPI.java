@@ -11,7 +11,6 @@ import org.oilmod.api.rep.providers.minecraft.MinecraftItemProvider;
 
 public abstract class RepAPI {
     private boolean initialised;
-    private  ItemStackFactory itemStackFactory;
     private MinecraftBlockProvider mcBlockProvider;
     private MinecraftItemProvider mcItemProvider;
     private Enchantments.EnchantmentHelper enchantmentHelper;
@@ -20,17 +19,12 @@ public abstract class RepAPI {
     private Inventory.InventoryHelper inventoryHelper;
 
 
-    protected abstract ItemStackFactory createItemStackFactory();
     protected abstract MinecraftBlockProvider createMCBlockProvider();
     protected abstract MinecraftItemProvider createMCItemProvider();
     protected abstract  Enchantments.EnchantmentHelper createEnchantmentHelper();
     protected abstract  DisplayName.DisplayNameHelper createDisplayNameHelper();
     protected abstract  Durability.DurabilityHelper createDurabilityHelper();
     protected abstract  Inventory.InventoryHelper createInventoryHelper();
-
-    public ItemStackFactory getItemStackFactory() {
-        return itemStackFactory;
-    }
 
     public MinecraftBlockProvider getMCBlockProvider() {
         return mcBlockProvider;
@@ -68,7 +62,6 @@ public abstract class RepAPI {
     }
     
     protected void createAll() {
-        itemStackFactory = createItemStackFactory();
         mcBlockProvider = createMCBlockProvider();
         mcItemProvider = createMCItemProvider();
         enchantmentHelper = createEnchantmentHelper();
@@ -79,7 +72,6 @@ public abstract class RepAPI {
 
 
     protected void setAll() {
-        ItemStackFactory.INSTANCE = getItemStackFactory();
         MinecraftBlockProvider.setInstance(getMCBlockProvider());
         MinecraftItemProvider.setInstance(getMCItemProvider());
         Enchantments.RESOLVER.addImplementation(getEnchantmentHelper());
@@ -89,7 +81,6 @@ public abstract class RepAPI {
     }
     
     protected void initAll()  {
-        //no itemStackFactory init currently maybe add
         MinecraftBlockProvider.init();
         MinecraftItemProvider.init();
     }
