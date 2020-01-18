@@ -26,6 +26,7 @@ public abstract class RepAPI {
     protected abstract  Durability.DurabilityHelper createDurabilityHelper();
     protected abstract  Inventory.InventoryHelper createInventoryHelper();
 
+
     public MinecraftBlockProvider getMCBlockProvider() {
         return mcBlockProvider;
     }
@@ -81,6 +82,7 @@ public abstract class RepAPI {
     }
     
     protected void initAll()  {
+        //no itemStackFactory init currently maybe add
         MinecraftBlockProvider.init();
         MinecraftItemProvider.init();
     }
