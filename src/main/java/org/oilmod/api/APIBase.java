@@ -60,6 +60,5 @@ public abstract class APIBase {
     protected <T extends Throwable> void reportError(T e) throws T {
         if (exceptions == null)throw e;
         exceptions.add(e);
-
     }
 }
