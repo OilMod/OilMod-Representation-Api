@@ -6,8 +6,9 @@ import org.oilmod.api.rep.item.ItemRep;
 import java.util.EnumMap;
 
 public class MinecraftProvider {
-    private static EnumMap<MinecraftBlock, BlockRep> blocks = new EnumMap<>(MinecraftBlock.class);
-    private static EnumMap<MinecraftItem, BlockRep> items = new EnumMap<>(MinecraftItem.class);
+    //todo these are unused?!
+    private static final EnumMap<MinecraftBlock, BlockRep> blocks = new EnumMap<>(MinecraftBlock.class);
+    private static final EnumMap<MinecraftItem, BlockRep> items = new EnumMap<>(MinecraftItem.class);
 
     //Backing implementation
     public static abstract class MinecraftProviderHelper {
