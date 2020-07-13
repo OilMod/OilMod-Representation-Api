@@ -17,6 +17,7 @@ public class ImmutableBooleanState extends ImmutableValueStateBase {
     public void set(boolean value) {
         if (hasBeenSet())throw calledTwice();
         this.value = value;
+        beenSet();
     }
 
     public boolean get() {

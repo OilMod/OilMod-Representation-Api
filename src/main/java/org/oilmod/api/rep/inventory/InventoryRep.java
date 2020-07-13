@@ -80,6 +80,35 @@ public interface InventoryRep {
         return stack;
     }
 
+
+    default int take(ItemStackRep stack) {
+        int remaining = stack.getAmount();
+
+        for (int i = 0; i < getSize(); i++) {
+            ItemStackRep slotStack = getStored(i);
+            boolean slotEmpty = slotStack.isEmpty();
+
+
+            if (!slotEmpty && slotStack.isSimilar(stack)) {
+                if (slotStack.getAmount() >= remaining) {
+                    slotStack.setAmount(slotStack.getAmount() - remaining);
+                    return 0;
+                } else {
+                    remaining -= slotStack.getAmount();
+                    slotStack.setAmount(0);
+                }
+            }
+        }
+        return remaining;
+    }
+
+    default boolean isEmpty() {
+        for (int i = 0; i < getSize(); i++) {
+            if (!getStored(i).isEmpty())return false;
+        }
+        return true;
+    }
+
     default Iterator<ItemStackRep> getAllStored() {
         return IntStream.range(0, getSize()).mapToObj(this::getStored).iterator();
     }

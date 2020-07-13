@@ -21,6 +21,7 @@ public class ImmutableState<T> extends ImmutableValueStateBase {
     public void set(T value) {
         if (hasBeenSet())throw calledTwice();
         this.value = value;
+        beenSet();
     }
 
     public T get() {
