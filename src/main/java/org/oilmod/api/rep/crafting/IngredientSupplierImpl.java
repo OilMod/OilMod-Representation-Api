@@ -8,6 +8,7 @@ import java.util.Iterator;
 public class IngredientSupplierImpl implements IIngredientSupplier {
     private final InventoryRep inv;
     private final boolean shaped;
+    private Object nms;
 
     public IngredientSupplierImpl(InventoryRep inv, boolean shaped) {
         this.inv = inv;
@@ -38,6 +39,16 @@ public class IngredientSupplierImpl implements IIngredientSupplier {
     @Override
     public int getSupSlotMaxStack(int left, int top) {
         return inv.getMaxStack(left, top);
+    }
+
+    @Override
+    public void setNMS(Object nms) {
+        this.nms = nms;
+    }
+
+    @Override
+    public Object getNMS() {
+        return nms;
     }
 
     @Override

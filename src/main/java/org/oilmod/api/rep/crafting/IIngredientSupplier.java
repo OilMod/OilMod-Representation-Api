@@ -11,6 +11,8 @@ public interface IIngredientSupplier {
     ItemStackRep getSupplied(int left, int top);
     int getSupSlotMaxStack(int index);
     int getSupSlotMaxStack(int left, int top);
+    void setNMS(Object nms);
+    Object getNMS();
 
     /**
      * This is the reduced width. empty columns are not be counted!
