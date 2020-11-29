@@ -8,7 +8,7 @@ import org.oilmod.api.rep.states.implapi.ImplementationBase;
 import org.oilmod.api.rep.states.implapi.StateImplementationResolver;
 
 public class Inventory {
-    public final static StateImplementationResolver<InventoryHelper, ItemStackStateRep> RESOLVER = new StateImplementationResolver<>(ItemStackFactory.STATE_COLLECTOR, new InventoryHelper[]{});
+    public final static StateImplementationResolver<InventoryHelper, ItemStackStateRep> RESOLVER = new StateImplementationResolver<>(ItemStackFactory.INSTANCE.STATE_COLLECTOR , new InventoryHelper[]{});
 
     public static InventoryRep get(ItemStackStateProvider stateProv) {
         ItemStackStateRep state = stateProv.getProvidedItemStackState();

@@ -52,6 +52,11 @@ public class ItemStackStateImpl implements ItemStackStateRep {
         return itemDamage;
     }
 
+    @Override
+    public int getMaxStackSize() {
+        return 0;
+    }
+
     /*@Override
     public int getEnchantmentLevel(EnchantmentRep ench) {
         return enchantments.get(ench);
@@ -78,6 +83,16 @@ public class ItemStackStateImpl implements ItemStackStateRep {
         return state.getItemDamage() == getItemDamage() &&
                 state.getItemState().isSimilar(getItemState());// &&
                 //state.getEnchantments().stream().allMatch(en -> getEnchantmentLevel(en) == state.getEnchantmentLevel(en));
+    }
+
+    @Override
+    public boolean equals(ItemStackStateRep other) {
+        return false;
+    }
+
+    @Override
+    public int getHashCode() {
+        return 0;
     }
 
     /*@Override

@@ -24,7 +24,7 @@ public abstract class ItemStackFactory<Impl extends ItemStackFactory<Impl>> exte
         }
     }
 
-    public static StateCollector<ItemStackStateRep> STATE_COLLECTOR = new StateCollector<>();
+    public StateCollector<ItemStackStateRep> STATE_COLLECTOR = createStateCollector();
     public static ItemStackFactory INSTANCE;
 
     public ItemStackRep create(ItemRep item) {
@@ -70,4 +70,5 @@ public abstract class ItemStackFactory<Impl extends ItemStackFactory<Impl>> exte
     public ItemStackStateRep cloneStackState(ItemStackStateRep state) {
         return new ItemStackStateImpl(state);
     }
+    protected abstract StateCollector<ItemStackStateRep> createStateCollector();
 }

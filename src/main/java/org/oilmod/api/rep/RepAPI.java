@@ -88,7 +88,7 @@ public abstract class RepAPI {
     }
 
     protected void freezeAPI() {
-        ItemStackFactory.STATE_COLLECTOR.freeze();
+        ItemStackFactory.INSTANCE.STATE_COLLECTOR.freeze();
     }
 
     public static void installImplementation(RepAPI repAPI) {

@@ -37,6 +37,14 @@ public interface InventoryRep {
         return new InventoryViewImpl(this, indexOffset, width, height);
     }
 
+    /**
+     * Custom implementation need to account for resizing or mirroree themselves! This is for fixed after ctor sized inventories only
+     * @return
+     */
+    default MirrorSizedInventoryRep createSizeMirror() {
+        return is2d()?InventoryFactory.INSTANCE.createFixedSizeMirrorer2d(this):InventoryFactory.INSTANCE.createFixedSizeMirrorer1d(this);
+    }
+
 
     int getMaxStack(int slot);
     default int getMaxStack(int left, int top) {

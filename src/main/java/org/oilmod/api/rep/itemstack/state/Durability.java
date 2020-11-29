@@ -6,7 +6,7 @@ import org.oilmod.api.rep.states.implapi.ImplementationBase;
 import org.oilmod.api.rep.states.implapi.StateImplementationResolver;
 
 public class Durability {
-    public final static StateImplementationResolver<DurabilityHelper, ItemStackStateRep> RESOLVER = new StateImplementationResolver<>(ItemStackFactory.STATE_COLLECTOR, new DurabilityHelper[]{});
+    public final static StateImplementationResolver<DurabilityHelper, ItemStackStateRep> RESOLVER = new StateImplementationResolver<>(ItemStackFactory.INSTANCE.STATE_COLLECTOR , new DurabilityHelper[]{});
 
     public static void setDamage(ItemStackStateProvider stateProv, int durability) {
         ItemStackStateRep state = stateProv.getProvidedItemStackState();

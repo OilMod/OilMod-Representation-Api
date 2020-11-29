@@ -10,7 +10,7 @@ import org.oilmod.api.util.ReadSet;
 
 
 public final class Enchantments {
-    public final static StateImplementationResolver<EnchantmentHelper, ItemStackStateRep> RESOLVER = new StateImplementationResolver<>(ItemStackFactory.STATE_COLLECTOR, new EnchantmentHelper[]{});
+    public final static StateImplementationResolver<EnchantmentHelper, ItemStackStateRep> RESOLVER = new StateImplementationResolver<>(ItemStackFactory.INSTANCE.STATE_COLLECTOR , new EnchantmentHelper[]{});
 
     /**
      * Gets the level of the specified enchantment on this item stack

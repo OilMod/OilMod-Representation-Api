@@ -30,4 +30,10 @@ public abstract class InventoryFactory <Impl extends InventoryFactory<Impl>> ext
     public abstract InventoryRep createHeadlessInventory(int size);
     public abstract InventoryRep createHeadlessInventory(int height, int width);
 
+    //public abstract void resizeInventory(InventoryRep inv, int size);
+    //public abstract void resizeInventory(InventoryRep inv, int height, int width);
+
+    protected abstract MirrorSizedInventoryRep createFixedSizeMirrorer1d(InventoryRep inv);
+    protected abstract MirrorSizedInventoryRep createFixedSizeMirrorer2d(InventoryRep inv);
+
 }

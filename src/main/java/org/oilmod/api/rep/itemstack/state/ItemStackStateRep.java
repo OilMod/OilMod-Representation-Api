@@ -4,6 +4,7 @@ import org.oilmod.api.rep.enchant.EnchantmentRep;
 import org.oilmod.api.rep.item.ItemRep;
 import org.oilmod.api.rep.item.ItemStateRep;
 import org.oilmod.api.rep.itemstack.ItemStackFactory;
+import org.oilmod.api.rep.itemstack.ItemStackRep;
 import org.oilmod.api.rep.providers.ItemProvider;
 import org.oilmod.api.rep.providers.ItemStackStateProvider;
 import org.oilmod.api.rep.providers.ItemStateProvider;
@@ -15,7 +16,7 @@ public interface ItemStackStateRep extends ItemStackStateProvider, ItemStateProv
     boolean isAttached();
 
     default void applyTo(ItemStackStateProvider state, boolean additive, boolean force) {
-        ItemStackFactory.STATE_COLLECTOR.apply(this, state.getProvidedItemStackState(), additive, force);
+        ItemStackFactory.INSTANCE.STATE_COLLECTOR .apply(this, state.getProvidedItemStackState(), additive, force);
     }
 
 
@@ -26,6 +27,11 @@ public interface ItemStackStateRep extends ItemStackStateProvider, ItemStateProv
     @Override
     default ItemStackStateRep getProvidedItemStackState() {
         return this;
+    }
+
+    @Override
+    default ItemStackRep createStack(int amount) {
+        return ItemStackStateProvider.super.createStack(amount);
     }
 
     @Override
@@ -54,14 +60,24 @@ public interface ItemStackStateRep extends ItemStackStateProvider, ItemStateProv
 
 
 
+    /**
+     * Get the maximum stacksize for the material hold in this ItemStack.
+     * (Returns -1 if it has no idea)
+     *
+     * @return The maximum you can stack this material to.
+     */
+    int getMaxStackSize();
 
     /**
      * This method is the same as equals, but does not consider stack size
      * (amount).
      *
-     * @param stack the item stack to compare to
+     * @param state the item state to compare to
      * @return true if the two stacks are equal, ignoring the amount
      */
     boolean isSimilar(ItemStackStateProvider state);
 
+
+    boolean equals(ItemStackStateRep other);
+    int getHashCode();
 }

@@ -4,6 +4,7 @@ import org.apache.commons.lang3.Validate;
 import org.oilmod.api.rep.block.BlockStateRep;
 import org.oilmod.api.rep.item.ItemRep;
 import org.oilmod.api.rep.item.ItemStateRep;
+import org.oilmod.api.rep.itemstack.ItemStackRep;
 import org.oilmod.api.rep.itemstack.state.ItemStackStateRep;
 import org.oilmod.api.rep.providers.*;
 import org.oilmod.api.rep.variant.Availability;
@@ -354,6 +355,12 @@ public enum MinecraftItem implements RequestEnum<MinecraftItem, ItemRequest>, It
     @Override
     public ItemRep getProvidedItem() {
         return getItem();
+    }
+
+
+    @Override
+    public ItemStackRep createStack(int amount) {
+        return ItemStateProvider.super.createStack(amount);
     }
 
     @Override

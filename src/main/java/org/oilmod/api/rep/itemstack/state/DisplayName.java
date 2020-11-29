@@ -8,7 +8,7 @@ import org.oilmod.api.rep.states.implapi.StateImplementationResolver;
 import org.oilmod.api.util.ReadSet;
 
 public class DisplayName {
-    public final static StateImplementationResolver<DisplayName.DisplayNameHelper, ItemStackStateRep> RESOLVER = new StateImplementationResolver<>(ItemStackFactory.STATE_COLLECTOR, new DisplayName.DisplayNameHelper[]{});
+    public final static StateImplementationResolver<DisplayName.DisplayNameHelper, ItemStackStateRep> RESOLVER = new StateImplementationResolver<>(ItemStackFactory.INSTANCE.STATE_COLLECTOR , new DisplayName.DisplayNameHelper[]{});
 
     public static void set(ItemStackStateProvider stateProv, String displayName) {
         ItemStackStateRep state = stateProv.getProvidedItemStackState();

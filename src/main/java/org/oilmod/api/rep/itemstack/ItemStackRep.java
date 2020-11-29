@@ -12,6 +12,10 @@ public interface ItemStackRep extends ItemStackStateProvider, ItemStateProvider,
 
     ItemRep getItem();
 
+    @Override
+    default ItemStackRep createStack(int amount) {
+        return ItemStackStateProvider.super.createStack(amount);
+    }
 
     ItemStackStateRep getItemStackState();
 
@@ -74,6 +78,11 @@ public interface ItemStackRep extends ItemStackStateProvider, ItemStateProvider,
         return clone;
     }
 
+
+    ItemStackStateRep getContainerItem();
+
+    boolean isContainer();
+
     boolean isEmpty();
 
     @Override
@@ -90,4 +99,8 @@ public interface ItemStackRep extends ItemStackStateProvider, ItemStateProvider,
     default ItemStateRep getProvidedItemState() {
         return getItemState();
     }
+
+
+    boolean equals(ItemStackRep other);
+    int getHashCode();
 }
