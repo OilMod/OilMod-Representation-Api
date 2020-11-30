@@ -2,10 +2,13 @@ package org.oilmod.api.util.checkstate.mutable;
 
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
+import org.oilmod.api.util.checkstate.ArrayState;
 import org.oilmod.api.util.checkstate.StateHolderFactory;
+import org.oilmod.api.util.checkstate.immutable.FlagState;
 
 public class MutableIntState extends MutableCheckStateBase {
     public static final StateHolderFactory<MutableIntState, Object> FACTORY = (currentBackup, maxBackup, key) -> new MutableIntState(currentBackup, maxBackup);
+    public static final StateHolderFactory<ArrayState<MutableIntState>, Object> FACTORY_ARRAY = (currentBackup, maxBackup, key) -> new ArrayState<>(FACTORY, MutableIntState[]::new, maxBackup);
     private final IntList helperList;
 
     private MutableIntState(int currentBackupId, int maxBackup) {
@@ -14,6 +17,7 @@ public class MutableIntState extends MutableCheckStateBase {
     }
 
     public void set(int value) {
+        onSet();
         helperList.set(getCurrentIndex(), value);
     }
 

@@ -6,7 +6,6 @@ import org.oilmod.api.rep.itemstack.state.Durability;
 import org.oilmod.api.rep.itemstack.state.Enchantments;
 import org.oilmod.api.rep.itemstack.state.Inventory;
 import org.oilmod.api.rep.providers.minecraft.MinecraftBlockProvider;
-import org.oilmod.api.rep.providers.minecraft.MinecraftItem;
 import org.oilmod.api.rep.providers.minecraft.MinecraftItemProvider;
 
 public abstract class RepAPI {
@@ -87,8 +86,8 @@ public abstract class RepAPI {
         MinecraftItemProvider.init();
     }
 
-    protected void freezeAPI() {
-        ItemStackFactory.INSTANCE.STATE_COLLECTOR.freeze();
+    protected static void freezeAPI() {
+        ItemStackFactory.getStateCollector().freeze();
     }
 
     public static void installImplementation(RepAPI repAPI) {

@@ -81,6 +81,7 @@ public interface ItemStackRep extends ItemStackStateProvider, ItemStateProvider,
 
     ItemStackStateRep getContainerItem();
 
+    //todo this is a stupid name as it suggest that it should return true for e.g. backpacks
     boolean isContainer();
 
     boolean isEmpty();

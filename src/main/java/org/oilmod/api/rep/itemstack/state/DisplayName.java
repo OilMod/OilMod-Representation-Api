@@ -1,14 +1,12 @@
 package org.oilmod.api.rep.itemstack.state;
 
-import org.oilmod.api.rep.enchant.EnchantmentRep;
 import org.oilmod.api.rep.itemstack.ItemStackFactory;
 import org.oilmod.api.rep.providers.ItemStackStateProvider;
 import org.oilmod.api.rep.states.implapi.ImplementationBase;
 import org.oilmod.api.rep.states.implapi.StateImplementationResolver;
-import org.oilmod.api.util.ReadSet;
 
 public class DisplayName {
-    public final static StateImplementationResolver<DisplayName.DisplayNameHelper, ItemStackStateRep> RESOLVER = new StateImplementationResolver<>(ItemStackFactory.INSTANCE.STATE_COLLECTOR , new DisplayName.DisplayNameHelper[]{});
+    public final static StateImplementationResolver<DisplayName.DisplayNameHelper, ItemStackStateRep> RESOLVER = new StateImplementationResolver<>(ItemStackFactory.getStateCollector(), new DisplayName.DisplayNameHelper[]{});
 
     public static void set(ItemStackStateProvider stateProv, String displayName) {
         ItemStackStateRep state = stateProv.getProvidedItemStackState();

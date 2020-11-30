@@ -3,14 +3,13 @@ package org.oilmod.api.rep.itemstack.state;
 import org.oilmod.api.rep.enchant.EnchantmentRep;
 import org.oilmod.api.rep.itemstack.ItemStackFactory;
 import org.oilmod.api.rep.providers.ItemStackStateProvider;
-import org.oilmod.api.rep.states.implapi.IImplementation;
 import org.oilmod.api.rep.states.implapi.ImplementationBase;
 import org.oilmod.api.rep.states.implapi.StateImplementationResolver;
 import org.oilmod.api.util.ReadSet;
 
 
 public final class Enchantments {
-    public final static StateImplementationResolver<EnchantmentHelper, ItemStackStateRep> RESOLVER = new StateImplementationResolver<>(ItemStackFactory.INSTANCE.STATE_COLLECTOR , new EnchantmentHelper[]{});
+    public final static StateImplementationResolver<EnchantmentHelper, ItemStackStateRep> RESOLVER = new StateImplementationResolver<>(ItemStackFactory.getStateCollector(), new EnchantmentHelper[]{});
 
     /**
      * Gets the level of the specified enchantment on this item stack

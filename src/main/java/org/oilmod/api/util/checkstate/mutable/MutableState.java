@@ -17,6 +17,7 @@ public class MutableState<T> extends MutableCheckStateBase {
     }
 
     public void set(T value) {
+        onSet();
         helperList.set(getCurrentIndex(), value);
     }
 

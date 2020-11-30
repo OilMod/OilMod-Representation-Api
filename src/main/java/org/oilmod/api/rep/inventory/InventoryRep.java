@@ -53,7 +53,7 @@ public interface InventoryRep {
 
     default void clear() {
         for (int i = 0; i < getSize(); i++) {
-            setStored(i, ItemStackFactory.INSTANCE.empty());
+            setStored(i, ItemStackFactory.empty());
         }
     }
 
@@ -68,11 +68,11 @@ public interface InventoryRep {
 
             if (slotEmpty && stack.getAmount() <= slotMax) {
                 setStored(i, stack);
-                return ItemStackFactory.INSTANCE.empty();
+                return ItemStackFactory.empty();
             }
             if (slotEmpty || slotStack.isSimilar(stack)) {
                 int fill = Math.min(slotMax, slotStack.getAmount() + stack.getAmount());
-                int remaining = Math.min(0, (slotStack.getAmount() + stack.getAmount()) - fill);
+                int remaining = Math.max(0, (slotStack.getAmount() + stack.getAmount()) - fill);
                 if (slotEmpty) {
                     setStored(i, stack.asQuantity(fill));
                 } else {
@@ -81,7 +81,7 @@ public interface InventoryRep {
                 if (remaining > 0) {
                     stack.setAmount(remaining);
                 } else {
-                    return ItemStackFactory.INSTANCE.empty();
+                    return ItemStackFactory.empty();
                 }
             }
         }

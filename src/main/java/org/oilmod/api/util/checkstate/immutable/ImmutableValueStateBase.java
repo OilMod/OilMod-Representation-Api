@@ -22,6 +22,7 @@ public abstract class ImmutableValueStateBase implements IStateHolder {
         currentBackup -= by;
         if (!hasBeenSet()) {
             setFlagBackup = Integer.MAX_VALUE;
+            reset();
         }
     }
 

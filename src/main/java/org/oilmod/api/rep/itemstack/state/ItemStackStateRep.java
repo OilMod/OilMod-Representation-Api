@@ -1,6 +1,5 @@
 package org.oilmod.api.rep.itemstack.state;
 
-import org.oilmod.api.rep.enchant.EnchantmentRep;
 import org.oilmod.api.rep.item.ItemRep;
 import org.oilmod.api.rep.item.ItemStateRep;
 import org.oilmod.api.rep.itemstack.ItemStackFactory;
@@ -8,7 +7,6 @@ import org.oilmod.api.rep.itemstack.ItemStackRep;
 import org.oilmod.api.rep.providers.ItemProvider;
 import org.oilmod.api.rep.providers.ItemStackStateProvider;
 import org.oilmod.api.rep.providers.ItemStateProvider;
-import org.oilmod.api.util.ReadSet;
 
 public interface ItemStackStateRep extends ItemStackStateProvider, ItemStateProvider, ItemProvider {
     ItemStateRep getItemState();
@@ -16,12 +14,12 @@ public interface ItemStackStateRep extends ItemStackStateProvider, ItemStateProv
     boolean isAttached();
 
     default void applyTo(ItemStackStateProvider state, boolean additive, boolean force) {
-        ItemStackFactory.INSTANCE.STATE_COLLECTOR .apply(this, state.getProvidedItemStackState(), additive, force);
+        ItemStackFactory.getStateCollector().apply(this, state.getProvidedItemStackState(), additive, force);
     }
 
 
     default ItemStackStateRep copy() {
-        return ItemStackFactory.INSTANCE.cloneStackState(this);
+        return ItemStackFactory.cloneStackState(this);
     }
 
     @Override
