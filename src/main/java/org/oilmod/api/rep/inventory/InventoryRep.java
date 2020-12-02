@@ -131,4 +131,36 @@ public interface InventoryRep {
         if (!inv.is2d() && top != 0) throw new IllegalArgumentException("Cannot request top != 0 for 1D inventory");
         return left + top * inv.getWidth();
     }
+
+    InventoryRep EMPTY = new InventoryRep() {
+        @Override
+        public int getWidth() {
+            return 0;
+        }
+
+        @Override
+        public int getHeight() {
+            return 0;
+        }
+
+        @Override
+        public ItemStackRep getStored(int slot) {
+            return null;
+        }
+
+        @Override
+        public void setStored(int slot, ItemStackRep stack) {
+
+        }
+
+        @Override
+        public boolean isNative() {
+            return false;
+        }
+
+        @Override
+        public int getMaxStack(int slot) {
+            return 0;
+        }
+    };
 }
