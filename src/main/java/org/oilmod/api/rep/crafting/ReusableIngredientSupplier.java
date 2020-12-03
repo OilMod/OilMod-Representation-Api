@@ -88,7 +88,7 @@ public class ReusableIngredientSupplier implements IIngredientSupplier, Inventor
 
     @Override
     public IIngredientAccessor getSuppliedShapeless(int index) {
-        return accessor.reset(this, index);
+        return accessor.reset(this, shapelessAccessorMap[index]);
     }
 
     @Override

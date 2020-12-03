@@ -14,6 +14,7 @@ public class MutableIntState extends MutableCheckStateBase {
     private MutableIntState(int currentBackupId, int maxBackup) {
         super(currentBackupId, maxBackup);
         this.helperList = new IntArrayList(maxBackup);
+        setArraySize(maxBackup);
     }
 
     public void set(int value) {
@@ -21,8 +22,30 @@ public class MutableIntState extends MutableCheckStateBase {
         helperList.set(getCurrentIndex(), value);
     }
 
+    public int increment(int by) {
+        int result = getOrDefault() + by;
+        set(result);
+        return result;
+    }
+
+    public int decrement(int by) {
+        return increment(-by);
+    }
+
+    public int increment() {
+        return increment(1);
+    }
+
+    public int decrement() {
+        return increment(-1);
+    }
+
     public int get() {
         return helperList.getInt(getCurrentIndex());
+    }
+
+    public int getOrDefault() {
+        return isInUse()?get():0;
     }
 
     @Override

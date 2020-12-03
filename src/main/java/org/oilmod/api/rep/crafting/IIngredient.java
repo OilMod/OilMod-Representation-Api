@@ -22,7 +22,7 @@ public interface IIngredient {
      */
     List<ItemStackRep> getExamples();
     boolean check(IIngredientAccessor accessor, ICheckState checkState, int slotId);
-    int consume(IIngredientAccessor accessor, int slotId, ItemStackConsumerRep stackConsumer, int multiplier, int maxStack, ICheckState checkState, boolean simulate);
+    int consume(IIngredientAccessor accessor, int slotId, ItemStackConsumerRep stackConsumer, int multiplier, int maxStack, ICheckState checkState, boolean simulate); //todo, we should be able to delete maxStack as that should now be handled by the accessor!
 
     default boolean isEmpty() {
         return false;

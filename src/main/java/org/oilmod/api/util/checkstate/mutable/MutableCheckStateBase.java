@@ -8,7 +8,7 @@ public abstract class MutableCheckStateBase implements IStateHolder {
     private int maxBackup;
 
     public MutableCheckStateBase(int currentBackupId, int maxBackup) {
-        this.currentBackupId = currentBackupId;
+        this.currentBackupId = currentBackupId-1;
         this.baseBackupId = currentBackupId;
         this.maxBackup = maxBackup;
     }

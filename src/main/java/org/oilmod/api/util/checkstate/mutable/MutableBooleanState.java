@@ -16,6 +16,7 @@ public class MutableBooleanState extends MutableCheckStateBase {
     private MutableBooleanState(int currentBackupId, int maxBackup) {
         super(currentBackupId, maxBackup);
         this.helperList = new BooleanArrayList(maxBackup);
+        setArraySize(maxBackup);
     }
 
     public void set(boolean value) {

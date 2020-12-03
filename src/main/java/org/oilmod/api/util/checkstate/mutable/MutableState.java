@@ -14,6 +14,7 @@ public class MutableState<T> extends MutableCheckStateBase {
             throw new IllegalArgumentException("Please do not use this for wrapper types, instead create your own impl for the primary data type, just copy the code from MutableIntState cheers");
         }
         this.helperList = new ObjectArrayList<>(maxBackup);
+        setArraySize(maxBackup);
     }
 
     public void set(T value) {
