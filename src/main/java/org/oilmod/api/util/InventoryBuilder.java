@@ -13,7 +13,7 @@ public class InventoryBuilder<T> {
     private final InventoryRep invIn;
 
 
-    InventoryBuilder(InventoryRep invIn) {
+    protected InventoryBuilder(InventoryRep invIn) {
         this.invConsumer = null;
         this.invIn = invIn;
         this.parent = cast(this);

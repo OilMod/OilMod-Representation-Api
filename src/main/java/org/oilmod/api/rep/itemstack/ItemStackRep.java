@@ -38,6 +38,15 @@ public interface ItemStackRep extends ItemStackStateProvider, ItemStateProvider,
     void setAmount(int amount);
 
 
+
+    default void grow(int diff) {
+        this.setAmount(getAmount() + diff);
+    }
+
+    default void shrink(int diff) {
+        this.grow(-diff);
+    }
+    
     /**
      * Get the maximum stacksize for the material hold in this ItemStack.
      * (Returns -1 if it has no idea)

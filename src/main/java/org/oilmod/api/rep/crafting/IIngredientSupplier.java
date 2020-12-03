@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface IIngredientSupplier {
     boolean isShaped();
-    ItemStackRep getSupplied(int index);
-    ItemStackRep getSupplied(int left, int top);
+    IIngredientAccessor getSuppliedShapeless(int index);
+    IIngredientAccessor getSuppliedShaped(int left, int top);
     int getSupSlotMaxStack(int index);
     int getSupSlotMaxStack(int left, int top);
     void setNMS(Object nms);
@@ -24,6 +24,11 @@ public interface IIngredientSupplier {
      * @return
      */
     int getSuppliedHeight();
+    /**
+     * This returns the amount of items contained. this might be less than the supplied width*height!
+     * @return
+     */
+    int getSuppliedAmount();
     Iterator<ItemStackRep> getSuppliedAll();
 
 

@@ -21,8 +21,8 @@ public interface IIngredient {
      * @return returns list of examples, might not be as exhaustive as getExampleSupplier()
      */
     List<ItemStackRep> getExamples();
-    boolean check(ItemStackRep rep, ICheckState checkState, int slotId);
-    int consume(ItemStackRep rep, int slotId, ItemStackConsumerRep stackConsumer, int multiplier, int maxStack, ICheckState checkState, boolean simulate);
+    boolean check(IIngredientAccessor accessor, ICheckState checkState, int slotId);
+    int consume(IIngredientAccessor accessor, int slotId, ItemStackConsumerRep stackConsumer, int multiplier, int maxStack, ICheckState checkState, boolean simulate);
 
     default boolean isEmpty() {
         return false;

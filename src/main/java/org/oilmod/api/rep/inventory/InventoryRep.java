@@ -25,6 +25,17 @@ public interface InventoryRep {
     default void setStored(int left, int top, ItemStackRep stack) {
         setStored(convert2DIndex(this, left, top), stack);
     }
+
+    boolean isEmpty(int slot);
+    default boolean isEmpty(int left, int top) {
+        return isEmpty(convert2DIndex(this, left, top));
+    }
+
+    int getStack(int slot);
+    default int getStack(int left, int top) {
+        return getStack(convert2DIndex(this, left, top));
+    }
+
     boolean isNative();
 
     default InventoryView createView(int indexOffset, int size) {
@@ -151,6 +162,16 @@ public interface InventoryRep {
         @Override
         public void setStored(int slot, ItemStackRep stack) {
 
+        }
+
+        @Override
+        public boolean isEmpty(int slot) {
+            return true;
+        }
+
+        @Override
+        public int getStack(int slot) {
+            return 0;
         }
 
         @Override

@@ -25,12 +25,12 @@ public final class EmptyIngredient implements IIngredient {
 
 
     @Override
-    public boolean check(ItemStackRep rep, ICheckState checkState, int slotId) {
-        return rep.isEmpty();
+    public boolean check(IIngredientAccessor accessor, ICheckState checkState, int slotId) {
+        return accessor.isEmpty();
     }
 
     @Override
-    public int consume(ItemStackRep rep, int slotId, ItemStackConsumerRep stackConsumer, int multiplier, int maxStack, ICheckState checkState, boolean simulate) {
+    public int consume(IIngredientAccessor accessor, int slotId, ItemStackConsumerRep stackConsumer, int multiplier, int maxStack, ICheckState checkState, boolean simulate) {
         return multiplier;
     }
 
