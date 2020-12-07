@@ -12,7 +12,7 @@ public interface IComplexIngredient extends IIngredient{
      *
      * @return true if and only if so far no state existed
      */
-    boolean resetCheckState(ICheckState checkState);
+    boolean prepareRematch(ICheckState checkState);
 
     /**
      * @return true if matcher is only able to match 1! item/item variant

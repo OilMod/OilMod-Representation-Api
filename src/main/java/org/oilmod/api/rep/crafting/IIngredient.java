@@ -38,7 +38,7 @@ public interface IIngredient {
     /**
      * @return true if and only if so far no state existed
      */
-    default boolean resetCheckState(ICheckState checkState) {
+    default boolean prepareRematch(ICheckState checkState) {
         return true;
     }
 
