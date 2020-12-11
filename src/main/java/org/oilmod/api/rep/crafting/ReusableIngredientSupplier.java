@@ -9,6 +9,7 @@ import java.util.Iterator;
 public class ReusableIngredientSupplier implements IIngredientSupplier, InventoryView {
     private final InventoryRep root;
     private final ReusableIngredientAccessor accessor;
+    private final IIngredientCategory category;
     private int leftOff;
     private int topOff;
     private int width;
@@ -16,7 +17,8 @@ public class ReusableIngredientSupplier implements IIngredientSupplier, Inventor
     private boolean shaped;
     int[] shapelessAccessorMap;
 
-    public ReusableIngredientSupplier(InventoryRep root, ReusableIngredientAccessor accessor) {
+    public ReusableIngredientSupplier(IIngredientCategory category, InventoryRep root, ReusableIngredientAccessor accessor) {
+        this.category = category;
         this.root = root;
         this.accessor = accessor;
         reset();
@@ -83,7 +85,7 @@ public class ReusableIngredientSupplier implements IIngredientSupplier, Inventor
 
     @Override
     public IIngredientAccessor getSuppliedShaped(int left, int top) {
-        return accessor.reset(this, left, top);
+        return accessor.reset(this, left, top, width);
     }
 
     @Override
@@ -114,6 +116,11 @@ public class ReusableIngredientSupplier implements IIngredientSupplier, Inventor
     }
 
     @Override
+    public IIngredientCategory getCategory() {
+        return category;
+    }
+
+    @Override
     public int getSuppliedWidth() {
         return getWidth();
     }
@@ -126,6 +133,11 @@ public class ReusableIngredientSupplier implements IIngredientSupplier, Inventor
     @Override
     public int getSuppliedAmount() {
         return shapelessAccessorMap==null?0:shapelessAccessorMap.length;
+    }
+
+    @Override
+    public int getSize() {
+        return isShaped()?getWidth()*getHeight():getSuppliedAmount();
     }
 
     @Override

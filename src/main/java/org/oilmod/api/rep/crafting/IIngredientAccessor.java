@@ -12,7 +12,7 @@ public interface IIngredientAccessor {
     ItemStackStateProvider getItemState();
     int use(int amount, boolean simulate);
     int use(int amount, ItemStackStateProvider replaceWith, ItemStackConsumerRep stackConsumer, boolean simulate);
-    int getSameMatched();
-    int getTotalMatched();
+    int getSameMatched(int requested);
+    int getTotalMatched(int requested);
     boolean isEmpty();
 }

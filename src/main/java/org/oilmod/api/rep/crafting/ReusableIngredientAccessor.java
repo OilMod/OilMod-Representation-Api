@@ -19,11 +19,11 @@ public abstract class ReusableIngredientAccessor implements IIngredientAccessor 
         this.top = -1;
         this.shaped = false;
         return this;
-
     }
-    public ReusableIngredientAccessor reset(ReusableIngredientSupplier supplier, int left, int top) {
+
+    public ReusableIngredientAccessor reset(ReusableIngredientSupplier supplier, int left, int top, int width) {
         this.supplier = supplier;
-        this.index = -1;
+        this.index = left + top * width;
         this.left = left;
         this.top = top;
         this.shaped = supplier.is2d();
@@ -49,7 +49,7 @@ public abstract class ReusableIngredientAccessor implements IIngredientAccessor 
         return shaped;
     }
 
-    public final InventoryRep getSupplier() {
+    public final ReusableIngredientSupplier getSupplier() {
         return supplier;
     }
 

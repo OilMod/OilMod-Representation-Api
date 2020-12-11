@@ -13,6 +13,7 @@ public interface IIngredientSupplier {
     int getSupSlotMaxStack(int left, int top);
     void setNMS(Object nms);
     Object getNMS();
+    IIngredientCategory getCategory();
 
     /**
      * This is the reduced width. empty columns are not be counted!
@@ -29,6 +30,7 @@ public interface IIngredientSupplier {
      * @return
      */
     int getSuppliedAmount();
+    int getSize();
     Iterator<ItemStackRep> getSuppliedAll();
 
 
