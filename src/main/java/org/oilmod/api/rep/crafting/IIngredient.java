@@ -1,11 +1,11 @@
 package org.oilmod.api.rep.crafting;
 
 import it.unimi.dsi.fastutil.ints.IntSortedSet;
+import org.jetbrains.annotations.Nullable;
 import org.oilmod.api.rep.itemstack.ItemStackConsumerRep;
 import org.oilmod.api.rep.itemstack.ItemStackRep;
 import org.oilmod.api.util.checkstate.ICheckState;
 
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.IntPredicate;
 import java.util.function.Supplier;
