@@ -39,7 +39,7 @@ public abstract class MinecraftItemProvider extends APIBase {
         Validate.notNull(helper, "MinecraftItemProvider not implemented or set");
         if (helper.initialised)return;
         helper.apiInit();
-        MinecraftItem.values(); //will force initialisation
+        MinecraftItem.initAll(); //will force initialisation
         helper.apiPostInit();
         helper.initialised = true;
     }

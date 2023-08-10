@@ -12,7 +12,7 @@ import org.oilmod.api.rep.variant.Substitute;
 
 import java.util.function.Function;
 
-public enum MinecraftItem implements RequestEnum<MinecraftItem, ItemRequest>, ItemStateProvider, ItemProvider {
+public enum MinecraftItem implements RequestEnum<MinecraftItem, ItemRequest>, ItemStateProvider, ItemProvider.StdDeferred {
 
     //<editor-fold desc="Enum Declaration" defaultstate="collapsed">
     ACACIA_BOAT,
@@ -292,7 +292,7 @@ public enum MinecraftItem implements RequestEnum<MinecraftItem, ItemRequest>, It
     private final InitState<MinecraftItem, ItemRequest> initState;
     private MC112ItemReq mc112;
     private MC113ItemReq mc113;
-    private static final MinecraftItemProvider provider;
+    private static MinecraftItemProvider provider;
     private ItemStateRep value;
     private Availability availability;
 
@@ -304,12 +304,16 @@ public enum MinecraftItem implements RequestEnum<MinecraftItem, ItemRequest>, It
         initState = new InitState<>(this, mc112, mc113);
     }
 
-    static {
+
+
+    public static void initAll() {
         Validate.notNull(provider = MinecraftItemProvider.getInstance(), "Please set MinecraftItemProvider before accessing any items");
         for (MinecraftItem item:values()) {
             item.initState.init();
         }
     }
+
+
 
     public MC112ItemReq getMc112() {
         return mc112;
@@ -342,6 +346,7 @@ public enum MinecraftItem implements RequestEnum<MinecraftItem, ItemRequest>, It
     }
 
     public ItemRep getItem() {
+        Validate.notNull(value.getItem(), "Item not initialized yet");
         return value.getItem();
     }
 

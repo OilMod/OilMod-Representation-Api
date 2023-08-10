@@ -6,7 +6,7 @@ import org.oilmod.api.rep.item.ItemRep;
 import java.util.EnumMap;
 
 public class MinecraftProvider {
-    //todo these are unused?!
+    //todo these are unused?! note later: because the enum instances itself contains the provided value, which is probably an architectual flaw
     private static final EnumMap<MinecraftBlock, BlockRep> blocks = new EnumMap<>(MinecraftBlock.class);
     private static final EnumMap<MinecraftItem, BlockRep> items = new EnumMap<>(MinecraftItem.class);
 

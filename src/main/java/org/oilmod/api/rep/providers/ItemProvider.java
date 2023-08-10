@@ -11,4 +11,10 @@ public interface ItemProvider {
     default ItemStackRep createStack(int amount) {
         return ItemStackFactory.create(this.getProvidedItem(), amount);
     }
+
+    /***
+     * use this to signal that the item provider in fact is not self-referential or direct and will be resolved at call-time
+     */
+    interface StdDeferred extends ItemProvider {
+    }
 }
